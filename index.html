@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thanaphon Angsuwatthanakul | Technical Artist &amp; VFX Artist</title>
+  <meta name="description" content="Lead Technical Artist & VFX Artist. Anime shaders, stylized VFX and real-time cinematics for Unity URP.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="bar">
+  <a class="bar__name" href="#top">T.<span class="bar__long"> Angsuwatthanakul</span><span class="bar__short">A.</span></a>
+  <nav class="bar__nav">
+    <a href="#shaders"><span>01</span>Shaders</a>
+    <a href="#games"><span>02</span>Games</a>
+    <a href="#vfx"><span>03</span>VFX<i class="nav__more"> &amp; Cinematics</i></a>
+    <a href="#optimization"><span>04</span><i class="nav__more">Optimization</i><i class="nav__less">Perf</i></a>
+    <a href="#case-studies"><span>05</span><i class="nav__more">Case Studies</i><i class="nav__less">Cases</i></a>
+    <a href="#contact"><span>06</span>Contact</a>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero__main">
+    <div class="hero__meta mono">
+      <span>Portfolio 2026</span>
+      <span>Unity URP / HLSL</span>
+    </div>
+
+    <div class="hero__stage">
+    <div class="hero__intro">
+      <figure class="hero__photo">
+        <img src="assets/profile.jpg" alt="Thanaphon Angsuwatthanakul" onerror="this.parentNode.classList.add(&quot;is-empty&quot;)">
+        <span class="hero__photo-empty mono">Your photo<br>assets/profile.jpg<br>4 : 5</span>
+      </figure>
+
+      <div class="hero__about">
+        <h1 class="hero__name">Thanaphon<br>Angsuwatthanakul</h1>
+        <p class="hero__roles">Technical Artist <span>/</span> VFX Artist</p>
+        <p class="hero__level mono">Lead on 2 shipped titles / Unity URP</p>
+        <p class="hero__lede">I build how anime games look in Unity: character and environment shaders, scenes, VFX and cutscenes. Then I profile every frame until it runs smoothly on low-end phones.</p>
+      </div>
+    </div>
+
+    <div class="hero__cover" id="cover">
+      <img class="is-on" src="https://zlz-studio.github.io/images/games/Showcase_Regulus_003.webp" alt="" data-cap="Regulus: The Advent / VFX">
+      <img src="https://zlz-studio.github.io/images/games/Showcase_Regulus_004.webp" alt="" data-cap="Regulus: The Advent / VFX" loading="lazy">
+      <img src="https://zlz-studio.github.io/images/games/Showcase_RP_001.webp" alt="" data-cap="Father, Son &amp; Holy Guns / Scene" loading="lazy">
+      <img src="https://zlz-studio.github.io/images/games/Showcase_Regulus_001.webp" alt="" data-cap="Regulus: The Advent / Character" loading="lazy">
+      <div class="hero__cover-cap mono"><span id="coverCap">Regulus: The Advent / VFX</span><span id="coverIdx">01 / 04</span></div>
+      <span class="hero__cover-bar" id="coverBar"></span>
+    </div>
+    </div>
+  </div>
+
+  <div class="hero__band">
+    <a class="hero__cell" href="#anime">
+      <span class="mono">Released</span>
+      <strong>ZLZ Anime Shader</strong>
+      <span class="hero__go mono">Live demo →</span>
+    </a>
+    <a class="hero__cell" href="#env">
+      <span class="mono">Coming soon</span>
+      <strong>ZLZ Env Shader</strong>
+      <span class="hero__go mono">Live demo →</span>
+    </a>
+    <a class="hero__cell" href="#games">
+      <span class="mono">Latest title / 2026</span>
+      <strong>Father, Son &amp; Holy Guns</strong>
+      <span class="hero__go mono">Games →</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ 01 SHADERS ============ -->
+<section class="section" id="shaders">
+  <div class="section__head">
+    <span class="idx mono">01</span>
+    <h2 class="section__title">Shaders</h2>
+    <p class="section__note">Two shader packages for Unity URP, built and maintained under ZLZ Studio. Both demos are real WebGL builds you can run right here.</p>
+  </div>
+
+  <!-- ZLZ Anime -->
+  <article class="product" id="anime">
+    <div class="product__head">
+      <div class="product__label mono"><span class="dot dot--on"></span>Released on Unity Asset Store</div>
+      <h3 class="product__name">ZLZ Anime Shader</h3>
+    </div>
+
+    <div class="product__grid">
+      <div class="demo" data-src="https://zlz-studio.github.io/demo/" data-title="ZLZ Anime Shader WebGL demo">
+        <img class="demo__poster" src="assets/zlz-anime-demo.png" alt="ZLZ Anime Shader WebGL demo" loading="lazy">
+        <button class="demo__run" type="button">
+          <span class="mono">WebGL build v1.6.0</span>
+          <span class="demo__cta">Run live demo</span>
+          <span class="mono demo__hint">Loads on click</span>
+        </button>
+        <div class="demo__chrome mono">
+          <span>zlz-anime / demo</span>
+          <button class="demo__fs" type="button" hidden>Fullscreen ⤢</button>
+        </div>
+      </div>
+      <aside class="store">
+        <p class="store__label mono"><span class="dot dot--on"></span>Available now</p>
+        <a class="store__card" data-store="anime" data-id="354900" href="https://assetstore.unity.com/packages/vfx/shaders/zlz-anime-shader-354900" target="_blank" rel="noopener" aria-label="ZLZ Anime Shader on the Unity Asset Store">
+          <div class="store__thumb"><img data-field="image" src="https://assetstorev1-prd-cdn.unity3d.com/key-image/b3819d93-ffe7-49c6-91bf-b3d244799955.jpg" alt=""></div>
+          <div class="store__body">
+            <span class="store__tag"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 14 11 5M9.5 2.5v2M12.5 5.5h2M12 3l1-1M4 3.5l.5 1M3 7l1 .3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>VFX</span>
+            <strong>ZLZ Anime Shader</strong>
+            <span class="store__rating" data-field="rating" hidden><span class="stars" aria-hidden="true"><span class="stars__fill"></span></span><b></b> <i></i></span>
+            <span class="store__pub">ZLZ Studio</span>
+            <div class="store__foot">
+              <span class="store__price" data-field="price" hidden></span>
+              <span class="store__meta">
+                <span data-field="favourites" hidden>♥ <b></b></span>
+                <span class="store__ver" data-field="version" hidden></span>
+              </span>
+            </div>
+          </div>
+        </a>
+        <div class="store__actions">
+          <a class="btn btn--solid btn--wide" href="https://assetstore.unity.com/packages/vfx/shaders/zlz-anime-shader-354900" target="_blank" rel="noopener">View on Unity Asset Store ↗</a>
+          <a class="btn btn--wide" href="https://zlz-studio.github.io/features/" target="_blank" rel="noopener">Documentation ↗</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="feat feat--tabs">
+      <div class="feat__head mono">
+        <div class="tabs" role="tablist" id="animeTabs" data-grid="animeFeatures">
+          <button role="tab" aria-selected="true" data-tab="hair">Hair &amp; Face</button>
+          <button role="tab" aria-selected="false" data-tab="lighting">Lighting</button>
+          <button role="tab" aria-selected="false" data-tab="surface">Surface</button>
+          <button role="tab" aria-selected="false" data-tab="fx">FX Runtime</button>
+        </div>
+        <span>hover to play</span>
+      </div>
+      <div class="feat__panel" role="tabpanel" aria-labelledby="animeTabs">
+        <div class="feat__grid feat__grid--wide" id="animeFeatures"></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ZLZ Env -->
+  <article class="product" id="env">
+    <div class="product__head">
+      <div class="product__label mono"><span class="dot"></span>Coming soon to Unity Asset Store</div>
+      <h3 class="product__name">ZLZ Env Shader</h3>
+    </div>
+
+    <div class="product__grid">
+      <div class="demo" data-src="https://zlz-studio.github.io/env-demo/" data-title="ZLZ Env Shader WebGL demo">
+        <img class="demo__poster demo__poster--crop" src="https://zlz-studio.github.io/env/water/Water_Overview_Thumb.webp" alt="" loading="lazy">
+        <button class="demo__run" type="button">
+          <span class="mono">WebGL build v1.0.0</span>
+          <span class="demo__cta">Run live demo</span>
+          <span class="mono demo__hint">Loads on click</span>
+        </button>
+        <div class="demo__chrome mono">
+          <span>zlz-env / demo</span>
+          <button class="demo__fs" type="button" hidden>Fullscreen ⤢</button>
+        </div>
+      </div>
+      <aside class="store">
+        <p class="store__label mono"><span class="dot"></span>Coming soon</p>
+        <div class="store__card" data-store="env">
+          <div class="store__thumb store__thumb--crop"><img src="https://zlz-studio.github.io/env/water/Water_Overview_Thumb.webp" alt="" loading="lazy"></div>
+          <div class="store__body">
+            <span class="store__tag store__tag--soon">Coming soon</span>
+            <strong>ZLZ Env Shader</strong>
+            <span class="store__pub">ZLZ Studio</span>
+          </div>
+        </div>
+        <div class="store__actions">
+          <a class="btn btn--wide" href="https://zlz-studio.github.io/env/shader/" target="_blank" rel="noopener">Documentation ↗</a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="feat feat--tabs">
+      <div class="feat__head mono">
+        <div class="tabs" role="tablist" id="envTabs" data-grid="envFeatures">
+          <button role="tab" aria-selected="true" data-tab="surface">Surface</button>
+          <button role="tab" aria-selected="false" data-tab="grass">Grass</button>
+          <button role="tab" aria-selected="false" data-tab="water">Water</button>
+        </div>
+        <span>hover to play</span>
+      </div>
+      <div class="feat__panel" role="tabpanel" aria-labelledby="envTabs">
+        <div class="feat__grid feat__grid--wide" id="envFeatures"></div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ 02 GAMES (inverted) ============ -->
+<section class="section section--light" id="games">
+  <div class="section__head">
+    <span class="idx mono">02</span>
+    <h2 class="section__title">Games</h2>
+    <p class="section__note">Shipped titles where I owned the technical art and VFX.</p>
+  </div>
+
+  <div class="games">
+    <article class="game">
+      <a class="game__visual" href="https://store.steampowered.com/app/2840880/Father_Son__Holy_Guns/" target="_blank" rel="noopener">
+        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2840880/b0e23ddb39c35b27eb039e2ee418e9fcc2ebf52b/capsule_616x353.jpg" alt="Father, Son &amp; Holy Guns key art" loading="lazy">
+      </a>
+      <div class="game__body">
+        <p class="game__meta mono"><span>2026</span><span>PC / Unity URP</span></p>
+        <h3 class="game__title">Father, Son &amp; Holy Guns</h3>
+        <p class="game__role">Lead TechArt &amp; VFX</p>
+        <ul class="game__tags mono"><li>Anime Shader</li><li>FX</li><li>Cinematic Cutscene</li><li>Scene Setup</li><li>UI</li><li>Optimization</li></ul>
+        <a class="game__link mono" href="https://store.steampowered.com/app/2840880/Father_Son__Holy_Guns/" target="_blank" rel="noopener">View on Steam ↗</a>
+      </div>
+    </article>
+
+    <article class="game">
+      <a class="game__visual" href="https://www.regulustheadvent.com/th/index.html" target="_blank" rel="noopener">
+        <img src="https://zlz-studio.github.io/images/games/Showcase_Regulus_001.webp" alt="Regulus: The Advent key art" loading="lazy">
+      </a>
+      <div class="game__body">
+        <p class="game__meta mono"><span>2025</span><span>Mobile / Unity URP</span></p>
+        <h3 class="game__title">Regulus: The Advent</h3>
+        <p class="game__role">Lead TechArt &amp; VFX</p>
+        <ul class="game__tags mono"><li>Anime Shader</li><li>FX</li><li>Cinematic Cutscene</li><li>Scene Setup</li><li>UI</li><li>Optimization</li></ul>
+        <a class="game__link mono" href="https://www.regulustheadvent.com/th/index.html" target="_blank" rel="noopener">Official site ↗</a>
+      </div>
+    </article>
+
+    <article class="game">
+      <a class="game__visual" href="https://nicetozyou.com/" target="_blank" rel="noopener">
+        <img src="https://nicetozyou.com/wp-content/uploads/2023/07/4.-Anoungment-CBT-1.jpg" alt="Nice to Z You key art" loading="lazy">
+      </a>
+      <div class="game__body">
+        <p class="game__meta mono"><span>2023</span><span>Mobile / Unity URP</span></p>
+        <h3 class="game__title">Nice to Z You</h3>
+        <p class="game__role">Senior TechArt &amp; VFX</p>
+        <ul class="game__tags mono"><li>FX</li><li>Scene Setup</li><li>UI</li></ul>
+        <a class="game__link mono" href="https://nicetozyou.com/" target="_blank" rel="noopener">Official site ↗</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 03 VFX & CINEMATICS ============ -->
+<section class="section" id="vfx">
+  <div class="section__head">
+    <span class="idx mono">03</span>
+    <h2 class="section__title">VFX &amp; Cinematics</h2>
+    <p class="section__note">Effects and cutscene systems built for shipped games. Each card plays its clips in order.</p>
+  </div>
+
+  <div class="pipe">
+    <div class="pipe__item pipe__item--feature">
+      <div class="reel" data-clips="assets/case/cutscene-1.mp4"></div>
+      <span class="mono">03.1</span>
+      <h3>Cinematic cutscenes</h3>
+      <p>Take animator-delivered character and camera animation into Timeline, then build everything around it: lightweight sets, per-shot VFX, volume grading and lens work, all synced in one sequence.</p>
+    </div>
+    <div class="pipe__item">
+      <div class="reel" data-clips="assets/case/impact-1.mp4,assets/case/impact-2.mp4,assets/case/impact-3.mp4"></div>
+      <span class="mono">03.2</span>
+      <h3>Impact frame</h3>
+      <p>Full-screen shader and render feature for anime hit emphasis. Flash bursts, contrast breaks and chromatic pulses, timed to motion. No cost during regular gameplay.</p>
+    </div>
+    <div class="pipe__item">
+      <div class="reel" data-clips="assets/case/stencil-1.mp4,assets/case/stencil-2.mp4,assets/case/stencil-3.mp4"></div>
+      <span class="mono">03.3</span>
+      <h3>Stencil buffer FX</h3>
+      <p>Portal transitions and reveal masks built on the character shader and render features. Multi-layer masking that holds up under fast camera moves without sorting issues.</p>
+    </div>
+    <div class="pipe__item">
+      <div class="reel" data-clips="assets/case/character-1.mp4,assets/case/character-2.mp4,assets/case/character-3.mp4"></div>
+      <span class="mono">03.4</span>
+      <h3>Character effect system</h3>
+      <p>A character-specific effect system built on my character shader for the "Awakening" mode. It runs only while the mode is active, so normal gameplay pays nothing in FPS.</p>
+    </div>
+    <div class="pipe__item">
+      <div class="reel" data-clips="assets/case/smoke-1.mp4,assets/case/smoke-2.mp4"></div>
+      <span class="mono">03.5</span>
+      <h3>FX smoke</h3>
+      <p>Anime-style smoke from a stylized texture, a shader and a custom mesh, with control over shape, direction and flow. No sprite sheets: a single 512×512 texture stays sharp and saves VRAM on mobile.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 OPTIMIZATION ============ -->
+<section class="section" id="optimization">
+  <div class="section__head">
+    <span class="idx mono">04</span>
+    <h2 class="section__title">Optimization</h2>
+    <p class="section__note">Regulus: The Advent on a low-end Android phone. Same scenes, before and after my optimization pass.</p>
+  </div>
+
+  <div class="perf__summary">
+    <div class="perf__stat">
+      <span class="mono">Average FPS · 8 scenes</span>
+      <strong>9.8 <em>→</em> <b>30.9</b></strong>
+    </div>
+    <div class="perf__stat">
+      <span class="mono">Speed-up</span>
+      <strong><b>3.2×</b></strong>
+    </div>
+    <div class="perf__stat">
+      <span class="mono">Test device</span>
+      <strong class="perf__device">Samsung A32<small>Low-end · render scale 0.8</small></strong>
+    </div>
+  </div>
+
+  <div class="perf__grid">
+    <figure class="perf">
+      <div class="perf__pair">
+        <div class="perf__shot"><img src="assets/perf/01-before.jpg" alt="Scene 01 before optimization, 6.8 FPS average" loading="lazy"><span class="perf__tag mono">Before</span></div>
+        <div class="perf__shot"><img src="assets/perf/01-after.jpg" alt="Scene 01 after optimization, 24.9 FPS average" loading="lazy"><span class="perf__tag perf__tag--after mono">After</span></div>
+      </div>
+      <figcaption class="mono"><span>Scene 01</span><span>6.8 <i>→</i> <b>24.9</b> FPS</span></figcaption>
+    </figure>
+    <figure class="perf">
+      <div class="perf__pair">
+        <div class="perf__shot"><img src="assets/perf/02-before.jpg" alt="Scene 02 before optimization, 14.9 FPS average" loading="lazy"><span class="perf__tag mono">Before</span></div>
+        <div class="perf__shot"><img src="assets/perf/02-after.jpg" alt="Scene 02 after optimization, 37.2 FPS average" loading="lazy"><span class="perf__tag perf__tag--after mono">After</span></div>
+      </div>
+      <figcaption class="mono"><span>Scene 02</span><span>14.9 <i>→</i> <b>37.2</b> FPS</span></figcaption>
+    </figure>
+    <figure class="perf">
+      <div class="perf__pair">
+        <div class="perf__shot"><img src="assets/perf/03-before.jpg" alt="Scene 03 before optimization, 8.9 FPS average" loading="lazy"><span class="perf__tag mono">Before</span></div>
+        <div class="perf__shot"><img src="assets/perf/03-after.jpg" alt="Scene 03 after optimization, 38.2 FPS average" loading="lazy"><span class="perf__tag perf__tag--after mono">After</span></div>
+      </div>
+      <figcaption class="mono"><span>Scene 03</span><span>8.9 <i>→</i> <b>38.2</b> FPS</span></figcaption>
+    </figure>
+    <figure class="perf">
+      <div class="perf__pair">
+        <div class="perf__shot"><img src="assets/perf/04-before.jpg" alt="Scene 04 before optimization, 10.0 FPS average" loading="lazy"><span class="perf__tag mono">Before</span></div>
+        <div class="perf__shot"><img src="assets/perf/04-after.jpg" alt="Scene 04 after optimization, 42.1 FPS average" loading="lazy"><span class="perf__tag perf__tag--after mono">After</span></div>
+      </div>
+      <figcaption class="mono"><span>Scene 04</span><span>10.0 <i>→</i> <b>42.1</b> FPS</span></figcaption>
+    </figure>
+    <figure class="perf">
+      <div class="perf__pair">
+        <div class="perf__shot"><img src="assets/perf/05-before.jpg" alt="Scene 05 before optimization, 9.0 FPS average" loading="lazy"><span class="perf__tag mono">Before</span></div>
+        <div class="perf__shot"><img src="assets/perf/05-after.jpg" alt="Scene 05 after optimization, 21.1 FPS average" loading="lazy"><span class="perf__tag perf__tag--after mono">After</span></div>
+      </div>
+      <figcaption class="mono"><span>Scene 05</span><span>9.0 <i>→</i> <b>21.1</b> FPS</span></figcaption>
+    </figure>
+    <figure class="perf">
+      <div class="perf__pair">
+        <div class="perf__shot"><img src="assets/perf/06-before.jpg" alt="Scene 06 before optimization, 6.6 FPS average" loading="lazy"><span class="perf__tag mono">Before</span></div>
+        <div class="perf__shot"><img src="assets/perf/06-after.jpg" alt="Scene 06 after optimization, 19.8 FPS average" loading="lazy"><span class="perf__tag perf__tag--after mono">After</span></div>
+      </div>
+      <figcaption class="mono"><span>Scene 06</span><span>6.6 <i>→</i> <b>19.8</b> FPS</span></figcaption>
+    </figure>
+    <figure class="perf">
+      <div class="perf__pair">
+        <div class="perf__shot"><img src="assets/perf/07-before.jpg" alt="Scene 07 before optimization, 9.7 FPS average" loading="lazy"><span class="perf__tag mono">Before</span></div>
+        <div class="perf__shot"><img src="assets/perf/07-after.jpg" alt="Scene 07 after optimization, 28.5 FPS average" loading="lazy"><span class="perf__tag perf__tag--after mono">After</span></div>
+      </div>
+      <figcaption class="mono"><span>Scene 07</span><span>9.7 <i>→</i> <b>28.5</b> FPS</span></figcaption>
+    </figure>
+    <figure class="perf">
+      <div class="perf__pair">
+        <div class="perf__shot"><img src="assets/perf/08-before.jpg" alt="Scene 08 before optimization, 12.1 FPS average" loading="lazy"><span class="perf__tag mono">Before</span></div>
+        <div class="perf__shot"><img src="assets/perf/08-after.jpg" alt="Scene 08 after optimization, 35.4 FPS average" loading="lazy"><span class="perf__tag perf__tag--after mono">After</span></div>
+      </div>
+      <figcaption class="mono"><span>Scene 08</span><span>12.1 <i>→</i> <b>35.4</b> FPS</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="sub mono">How</div>
+    <div class="opt">
+      <div class="opt__col">
+        <p class="opt__head mono">01 · Asset budgets</p>
+        <ul>
+          <li>Limits for 2D, 3D, rig and animation set from day one</li>
+          <li>Textures packed into RGB / mask channels</li>
+          <li>Mobile resolutions and ETC2 / ASTC formats</li>
+          <li>Material rules to keep draw calls low</li>
+          <li>One import-settings flow for every team</li>
+        </ul>
+      </div>
+      <div class="opt__col">
+        <p class="opt__head mono">02 · Shader &amp; rendering</p>
+        <ul>
+          <li>Lightweight shaders, unused code stripped</li>
+          <li>Tight multi-compile keyword usage</li>
+          <li>SRP Batcher kept at full efficiency</li>
+          <li>Less overdraw, fewer transparency issues</li>
+          <li>Fewer passes; branch only when needed</li>
+        </ul>
+      </div>
+      <div class="opt__col">
+        <p class="opt__head mono">03 · Diagnose</p>
+        <ul class="opt__tools">
+          <li><b>Frame Debugger</b>draw calls, batching, sorting, stencil</li>
+          <li><b>Unity Profiler</b>CPU / GPU ms, spikes</li>
+          <li><b>Memory Profiler</b>textures, meshes, peaks</li>
+          <li><b>RenderDoc</b>pixel cost, instruction count</li>
+          <li><b>Android Logcat</b>stability, runtime errors</li>
+        </ul>
+      </div>
+    </div>
+</section>
+
+<!-- ============ 05 CASE STUDIES ============ -->
+<section class="section" id="case-studies">
+  <div class="section__head">
+    <span class="idx mono">05</span>
+    <h2 class="section__title">Case studies</h2>
+    <p class="section__note">Rendering problems default Unity doesn't handle for anime characters, and how ZLZ Anime Shader solves them. Drag the divider to compare.</p>
+  </div>
+
+  <div class="case">
+    <div class="case__text">
+      <span class="mono case__n">05.1</span>
+      <h3>Depth-safe transparent hair</h3>
+      <p>Anime hair is usually opaque, so eyes and brows disappear behind it. Switching to transparent brings sorting bugs: the face renders in front, hair layers swap, back faces pop through.</p>
+      <p>A custom visibility pass keeps the hair transparent while depth stays correct. Eyes read through the fringe from every camera angle, with no sorting glitches in motion.</p>
+    </div>
+    <div class="compare" style="--pos:50%">
+      <img src="https://zlz-studio.github.io/features/images/Hair_Transparent_Off.webp" alt="Opaque hair" loading="lazy">
+      <img class="compare__top" src="https://zlz-studio.github.io/features/images/Hair_Transparent_On.webp" alt="Depth-safe transparent hair" loading="lazy">
+      <span class="compare__tag mono compare__tag--l">Default</span>
+      <span class="compare__tag mono compare__tag--r">ZLZ</span>
+      <input class="compare__range" type="range" min="0" max="100" value="50" aria-label="Compare before and after">
+      <span class="compare__line"></span>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="case__text">
+      <span class="mono case__n">05.2</span>
+      <h3>Silhouette-accurate hair shadow</h3>
+      <p>Shadow maps give blurry, jittering hair shadows even at 4K, and the shapes never match the actual strands.</p>
+      <ul class="ticks">
+        <li>Sharp at any camera distance</li>
+        <li>Follows hair animation exactly</li>
+        <li>Independent of light direction</li>
+        <li>Stable 60 fps on mobile, no 4K cascades</li>
+      </ul>
+    </div>
+    <div class="compare" style="--pos:50%">
+      <img src="https://zlz-studio.github.io/features/images/Hair_Shadow_Off.webp" alt="Hair shadow off" loading="lazy">
+      <img class="compare__top" src="https://zlz-studio.github.io/features/images/Hair_Shadow_On.webp" alt="Hair shadow on" loading="lazy">
+      <span class="compare__tag mono compare__tag--l">Off</span>
+      <span class="compare__tag mono compare__tag--r">On</span>
+      <input class="compare__range" type="range" min="0" max="100" value="50" aria-label="Compare before and after">
+      <span class="compare__line"></span>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="case__text">
+      <span class="mono case__n">05.3</span>
+      <h3>Face shadow</h3>
+      <p>A dedicated face shadow driven by the head direction system, so nose and cheek shading keep a clean, drawn shape as the head turns instead of the noisy terminator a standard lit shader gives.</p>
+    </div>
+    <div class="compare" style="--pos:50%">
+      <img src="https://zlz-studio.github.io/features/images/FaceShadow_Off.webp" alt="Face shadow off" loading="lazy">
+      <img class="compare__top" src="https://zlz-studio.github.io/features/images/FaceShadow_On.webp" alt="Face shadow on" loading="lazy">
+      <span class="compare__tag mono compare__tag--l">Off</span>
+      <span class="compare__tag mono compare__tag--r">On</span>
+      <input class="compare__range" type="range" min="0" max="100" value="50" aria-label="Compare before and after">
+      <span class="compare__line"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 CONTACT ============ -->
+<footer class="contact" id="contact">
+  <span class="idx mono">06</span>
+  <p class="contact__lead">Have a project that needs a technical artist?</p>
+  <a class="contact__mail" href="mailto:zlzstudio.production@gmail.com">zlzstudio.production<wbr>@gmail.com</a>
+  <div class="contact__links mono">
+    <a href="https://www.artstation.com/zhugeliangz" target="_blank" rel="noopener">ArtStation ↗</a>
+    <a href="https://www.youtube.com/@ZLZ-zhugeliangz" target="_blank" rel="noopener">YouTube ↗</a>
+    <a href="https://x.com/zlz_studio" target="_blank" rel="noopener">X ↗</a>
+    <a href="https://zlz-studio.github.io/" target="_blank" rel="noopener">ZLZ Studio ↗</a>
+  </div>
+  <div class="contact__base mono">
+    <span>© <span id="year">2026</span> Thanaphon Angsuwatthanakul</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

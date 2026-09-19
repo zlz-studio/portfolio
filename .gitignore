@@ -1,0 +1,11 @@
+# raw footage for editing, not part of the website
+Footage/
+
+# raw Canva downloads (the site uses the trimmed copies in assets/case and assets/perf)
+assets/canva/
+
+# original photos (the site uses assets/profile.jpg)
+/1000002*.jpeg
+
+# local tooling
+.claude/
