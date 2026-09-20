@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <header class="bar">
   <a class="bar__name" href="#top">T.<span class="bar__long"> Angsuwatthanakul</span><span class="bar__short">A.</span></a>
@@ -41,6 +42,8 @@
     <a href="#contact"><span>06</span>Contact</a>
   </nav>
 </header>
+
+<main id="main" tabindex="-1">
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
@@ -65,14 +68,14 @@
       </div>
     </div>
 
-    <div class="hero__cover" id="cover">
+    <figure class="hero__cover" id="cover">
       <img class="is-on" src="https://zlz-studio.github.io/images/games/Showcase_Regulus_003.webp" alt="" data-cap="Regulus: The Advent / VFX">
       <img src="https://zlz-studio.github.io/images/games/Showcase_Regulus_004.webp" alt="" data-cap="Regulus: The Advent / VFX" loading="lazy">
       <img src="https://zlz-studio.github.io/images/games/Showcase_RP_001.webp" alt="" data-cap="Father, Son &amp; Holy Guns / Scene" loading="lazy">
       <img src="https://zlz-studio.github.io/images/games/Showcase_Regulus_001.webp" alt="" data-cap="Regulus: The Advent / Character" loading="lazy">
-      <div class="hero__cover-cap mono"><span id="coverCap">Regulus: The Advent / VFX</span><span id="coverIdx">01 / 04</span></div>
+      <figcaption class="hero__cover-cap mono"><span id="coverCap">Regulus: The Advent / VFX</span><span id="coverIdx">01 / 04</span></figcaption>
       <span class="hero__cover-bar" id="coverBar"></span>
-    </div>
+    </figure>
     </div>
   </div>
 
@@ -158,7 +161,7 @@
         </div>
         <span>hover to play</span>
       </div>
-      <div class="feat__panel" role="tabpanel" aria-labelledby="animeTabs">
+      <div class="feat__panel" role="tabpanel">
         <div class="feat__grid feat__grid--wide" id="animeFeatures"></div>
       </div>
     </div>
@@ -209,7 +212,7 @@
         </div>
         <span>hover to play</span>
       </div>
-      <div class="feat__panel" role="tabpanel" aria-labelledby="envTabs">
+      <div class="feat__panel" role="tabpanel">
         <div class="feat__grid feat__grid--wide" id="envFeatures"></div>
       </div>
     </div>
@@ -488,6 +491,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- ============ 06 CONTACT ============ -->
 <footer class="contact" id="contact">

@@ -100,21 +100,43 @@
     const list = document.getElementById(tablistId);
     if (!list) return;
     const grid = document.getElementById(list.dataset.grid);
-    const tabs = list.querySelectorAll("button");
+    const panel = grid.closest(".feat__panel");
+    const tabs = [...list.querySelectorAll("button")];
     renderCards(grid, groups[tabs[0].dataset.tab]);
 
-    tabs.forEach((btn) => {
+    panel.id = tablistId + "Panel";
+    tabs.forEach((btn, n) => {
+      btn.id = tablistId + "-" + btn.dataset.tab;
+      btn.setAttribute("aria-controls", panel.id);
+      btn.tabIndex = n ? -1 : 0; // the list is one tab stop; arrow keys move inside it
       btn.insertAdjacentHTML("beforeend", `<sup>${groups[btn.dataset.tab].length}</sup>`);
-      btn.addEventListener("click", () => {
-        if (btn.getAttribute("aria-selected") === "true") return;
-        tabs.forEach((b) => b.setAttribute("aria-selected", String(b === btn)));
-        grid.classList.add("is-swapping");
-        setTimeout(() => {
-          renderCards(grid, groups[btn.dataset.tab]);
-          grid.classList.remove("is-swapping");
-        }, 220);
-      });
+      btn.addEventListener("click", () => select(btn));
     });
+    panel.setAttribute("aria-labelledby", tabs[0].id);
+
+    list.addEventListener("keydown", (e) => {
+      const at = tabs.indexOf(document.activeElement);
+      const to = { ArrowLeft: at - 1, ArrowRight: at + 1, Home: 0, End: tabs.length - 1 }[e.key];
+      if (at < 0 || to === undefined) return;
+      e.preventDefault();
+      const next = tabs[(to + tabs.length) % tabs.length];
+      select(next);
+      next.focus();
+    });
+
+    function select(btn) {
+      if (btn.getAttribute("aria-selected") === "true") return;
+      tabs.forEach((b) => {
+        b.setAttribute("aria-selected", String(b === btn));
+        b.tabIndex = b === btn ? 0 : -1;
+      });
+      panel.setAttribute("aria-labelledby", btn.id);
+      grid.classList.add("is-swapping");
+      setTimeout(() => {
+        renderCards(grid, groups[btn.dataset.tab]);
+        grid.classList.remove("is-swapping");
+      }, 220);
+    }
   }
 
   setupTabs("animeTabs", ANIME);
