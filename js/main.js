@@ -114,6 +114,14 @@
     });
     panel.setAttribute("aria-labelledby", tabs[0].id);
 
+    // on phones the row scrolls with its scrollbar hidden; fade the edge while tabs are off-screen
+    const head = list.closest(".feat__head");
+    const fade = () => head.classList.toggle("has-more", list.scrollWidth - list.scrollLeft - list.clientWidth > 1);
+    list.addEventListener("scroll", fade, { passive: true });
+    addEventListener("resize", fade);
+    if (document.fonts) document.fonts.ready.then(fade);
+    fade();
+
     list.addEventListener("keydown", (e) => {
       const at = tabs.indexOf(document.activeElement);
       const to = { ArrowLeft: at - 1, ArrowRight: at + 1, Home: 0, End: tabs.length - 1 }[e.key];
