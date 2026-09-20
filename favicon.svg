@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#000"/>
+  <rect x="0" y="0" width="64" height="3" fill="#d4a93c"/>
+  <text x="32" y="46" text-anchor="middle"
+        font-family="Archivo, Arial Black, Arial, sans-serif" font-weight="800" font-size="40"
+        letter-spacing="-2" fill="#fff">TA</text>
+</svg>
