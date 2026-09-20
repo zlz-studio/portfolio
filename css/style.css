@@ -208,6 +208,12 @@ h1, h2, h3, p { margin: 0; }
 }
 .hero__cover-cap span:last-child { color: var(--mute); }
 
+/* narrow frames: the tab nearly fills the width, and a part-width one leaves a
+   sliver of artwork on the right that reads as a glitch. Span the frame instead. */
+@media (max-width: 460px) {
+  .hero__cover-cap { right: 0; justify-content: space-between; }
+}
+
 .hero__cover-bar {
   position: absolute; left: 0; bottom: 0;
   height: 2px; width: 100%;

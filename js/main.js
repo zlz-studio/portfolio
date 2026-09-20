@@ -134,8 +134,13 @@
       run.remove();
       demo.prepend(frame);
       demo.classList.add("is-live");
-      fs.hidden = false;
-      fs.addEventListener("click", () => (frame.requestFullscreen || frame.webkitRequestFullscreen).call(frame));
+
+      // iOS Safari has no element fullscreen; hide the button rather than throw on click
+      const goFull = frame.requestFullscreen || frame.webkitRequestFullscreen;
+      if (goFull) {
+        fs.hidden = false;
+        fs.addEventListener("click", () => goFull.call(frame));
+      }
     });
   });
 
