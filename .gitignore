@@ -9,3 +9,6 @@ assets/canva/
 
 # local tooling
 .claude/
+
+# private working notes
+/NOTES.md
