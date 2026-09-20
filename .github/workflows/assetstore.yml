@@ -18,15 +18,26 @@ jobs:
         with:
           node-version: 20
       - run: node scripts/fetch-assetstore.mjs
-      - name: Commit if changed
+      - name: Commit when a value changed, or to refresh the snapshot date
         run: |
           git config user.name "assetstore-bot"
           git config user.email "assetstore-bot@users.noreply.github.com"
           git add data/assetstore.json
-          # fetchedAt changes every run; only commit when a real value changed
+          reason=""
+          # every run rewrites fetchedAt, so ignore that line when looking for real changes
           if git diff --cached -U0 data/assetstore.json | grep -E '^[+-] ' | grep -vq fetchedAt; then
-            git commit -m "Update Asset Store snapshot"
+            reason="values changed"
+          else
+            # the site hides these numbers once the snapshot is stale, so keep the date fresh
+            last=$(git log -1 --format=%ct -- data/assetstore.json || echo 0)
+            age=$(( ( $(date +%s) - last ) / 86400 ))
+            if [ "$age" -ge 5 ]; then
+              reason="refresh date (${age}d old)"
+            fi
+          fi
+          if [ -n "$reason" ]; then
+            git commit -m "Update Asset Store snapshot ($reason)"
             git push
           else
-            echo "No listing changes."
+            echo "No listing changes and the snapshot is recent; nothing to commit."
           fi
