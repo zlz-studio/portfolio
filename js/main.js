@@ -340,3 +340,32 @@
     if (reduce) video.addEventListener("playing", () => video.pause(), { once: true });
   });
 })();
+
+// ---- copy the email address: most people paste it rather than open a mail client ----
+(function () {
+  const btn = document.querySelector(".contact__copy");
+  if (!btn) return;
+  if (!navigator.clipboard) { btn.hidden = true; return; } // no clipboard: the mailto link still works
+  const mail = document.querySelector(".contact__mail");
+  const idle = btn.textContent;
+  let timer = 0;
+
+  function flash(text, done) {
+    btn.textContent = text;
+    btn.classList.toggle("is-done", done);
+    clearTimeout(timer);
+    timer = setTimeout(() => { btn.textContent = idle; btn.classList.remove("is-done"); }, 1800);
+  }
+
+  btn.addEventListener("click", () => {
+    navigator.clipboard.writeText(btn.dataset.mail).then(() => flash("Copied", true)).catch(() => {
+      // refused: select the address instead so it can still be copied by hand
+      const range = document.createRange();
+      range.selectNodeContents(mail);
+      const sel = getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      flash("Press Ctrl+C", false);
+    });
+  });
+})();

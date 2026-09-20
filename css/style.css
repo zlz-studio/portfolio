@@ -668,18 +668,30 @@ a.row:hover ~ .row, .rows:hover a.row:not(:hover) { color: inherit; }
 
 /* ---------- contact ---------- */
 .contact {
-  padding: clamp(80px, 14vh, 160px) var(--gut) calc(22px + env(safe-area-inset-bottom, 0px));
+  padding: clamp(56px, 8vh, 96px) var(--gut) calc(22px + env(safe-area-inset-bottom, 0px));
   display: grid;
-  gap: 26px;
+  gap: 24px;
 }
 .contact .idx { padding: 0; }
-.contact__lead { color: var(--mute); font-size: clamp(16px, 1.6vw, 22px); }
+
+/* the ask sits beside the facts instead of stacking down the page */
+.contact__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 72px);
+  align-items: start;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+}
+.contact__lead { color: var(--mute); font-size: clamp(16px, 1.4vw, 20px); max-width: 30ch; }
 .contact__mail {
+  display: block;
+  margin-top: 18px;
   font-weight: 800;
-  font-stretch: 125%;
-  font-size: clamp(26px, 6.2vw, 108px);
-  line-height: .95;
-  letter-spacing: -.05em;
+  font-stretch: 118%;
+  font-size: clamp(23px, 3.2vw, 46px);
+  line-height: 1;
+  letter-spacing: -.035em;
   overflow-wrap: anywhere;
   width: fit-content;
   max-width: 100%;
@@ -688,14 +700,45 @@ a.row:hover ~ .row, .rows:hover a.row:not(:hover) { color: inherit; }
   padding-bottom: 6px;
 }
 .contact__mail:hover { background-size: 100% 3px; }
-.contact__links { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 10px; }
+
+.contact__copy {
+  margin-top: 16px;
+  padding: 7px 14px;
+  border: 1px solid var(--rule-strong);
+  color: var(--mute);
+  transition: color .25s, border-color .25s;
+}
+.contact__copy:hover { color: var(--paper); border-color: var(--paper); }
+.contact__copy.is-done { color: var(--gold); border-color: var(--gold); }
+
+/* label / value pairs: what a recruiter checks before writing */
+.contact__facts { margin: 0; display: grid; gap: 4px 20px; }
+.contact__facts dt { color: var(--mute); padding-top: 14px; border-top: 1px solid var(--rule); }
+.contact__facts dt:first-child { padding-top: 0; border-top: 0; }
+.contact__facts dd {
+  margin: 0 0 14px;
+  font-size: clamp(15px, 1.2vw, 18px);
+}
+.contact__facts dd:last-child { margin-bottom: 0; }
+.contact__facts dd i { font-style: normal; color: var(--mute-2); margin: 0 .25em; }
+
+.contact__links { display: flex; flex-wrap: wrap; gap: 8px 28px; }
 .contact__links a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .contact__base {
   display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-  margin-top: clamp(60px, 12vh, 140px);
+  margin-top: clamp(32px, 5vh, 64px);
   padding-top: 12px;
   border-top: 1px solid var(--rule);
   color: var(--mute);
+}
+
+@media (max-width: 760px) {
+  .contact { padding-top: clamp(40px, 5vh, 96px); gap: 20px; }
+  .contact__grid { grid-template-columns: 1fr; gap: 24px; padding-bottom: 24px; }
+  /* the two facts sit side by side instead of stacking, so the block stays short */
+  .contact__facts { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; grid-auto-flow: column; gap: 6px 20px; }
+  .contact__facts dd { margin-bottom: 0; }
+  .contact__base { margin-top: 28px; }
 }
 
 /* ---------- reveal ---------- */
