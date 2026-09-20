@@ -320,7 +320,7 @@ main:focus { outline: none; }
   letter-spacing: -.045em;
   text-transform: uppercase;
 }
-.section__note { color: var(--mute); font-size: 15px; max-width: 38ch; }
+.section__note { color: var(--mute); font-size: 15px; max-width: 38ch; text-wrap: pretty; }
 
 @media (max-width: 900px) {
   .section__head { grid-template-columns: 1fr; }
@@ -683,7 +683,11 @@ a.row:hover ~ .row, .rows:hover a.row:not(:hover) { color: inherit; }
   padding-bottom: 24px;
   border-bottom: 1px solid var(--rule);
 }
-.contact__lead { color: var(--mute); font-size: clamp(16px, 1.4vw, 20px); max-width: 30ch; }
+.contact__lead {
+  color: var(--mute);
+  font-size: clamp(16px, 1.4vw, 20px);
+  text-wrap: balance; /* if it has to wrap, split it evenly instead of orphaning a word */
+}
 .contact__mail {
   display: block;
   margin-top: 18px;
