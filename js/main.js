@@ -18,6 +18,7 @@
       ["Soft Light",        T + "soft-light.webp",        null, "/features/Soft-Light/"],
       ["Rim Light",         T + "rimlight.webp",          null, "/features/RimLight/"],
       ["Contact Shadow",    T + "contact-shadow.webp",    null, "/features/Contact-Shadow/"],
+      ["Tone Mapping",      "/setup-character/Tone-Mapping/Anime.webp", null, "/setup-character/Tone-Mapping/"],
     ],
     surface: [
       ["Base Colors",       T + "base-colors.webp",       null, "/features/Base-Character-Colors/"],
