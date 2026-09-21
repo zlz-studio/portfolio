@@ -274,8 +274,14 @@
       if (img && img.src !== pkg.image) img.src = pkg.image;
     }
     if (pkg.price != null) {
+      const money = new Intl.NumberFormat("en-US", { style: "currency", currency: pkg.currency || "USD" });
       put(card, "price", (el) => {
-        el.textContent = new Intl.NumberFormat("en-US", { style: "currency", currency: pkg.currency || "USD" }).format(pkg.price);
+        el.textContent = money.format(pkg.price);
+        // on sale: show the list price struck through and the discount, like the store does
+        if (pkg.listPrice > pkg.price) {
+          el.insertAdjacentHTML("beforeend", ` <s>${money.format(pkg.listPrice)}</s>`);
+          if (pkg.discount) el.insertAdjacentHTML("beforeend", ` <em>-${pkg.discount}%</em>`);
+        }
       });
     }
     if (pkg.rating != null) {

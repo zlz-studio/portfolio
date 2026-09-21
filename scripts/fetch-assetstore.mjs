@@ -9,10 +9,9 @@
 
 import { writeFile, readFile } from "node:fs/promises";
 
-// Add ZLZ Env Shader here once it is published (set its id and url).
 const PACKAGES = {
   anime: { id: 354900, url: "https://assetstore.unity.com/packages/vfx/shaders/zlz-anime-shader-354900" },
-  env:   { id: null,   url: null },
+  env:   { id: 397684, url: "https://assetstore.unity.com/packages/vfx/shaders/zlz-env-shader-397684" },
 };
 
 const OUT = new URL("../data/assetstore.json", import.meta.url);
@@ -41,7 +40,8 @@ const num = (v) => (v == null || v === "" || Number.isNaN(Number(v)) ? null : Nu
 
 async function snapshot({ id, url }) {
   if (!id || !url) return null;
-  const out = { id, url, version: null, price: null, currency: null, rating: null, reviews: null, favourites: null, image: null };
+  // listPrice and discount stay null unless the package is on sale
+  const out = { id, url, version: null, price: null, listPrice: null, discount: null, currency: null, rating: null, reviews: null, favourites: null, image: null };
 
   try {
     const html = await text(url);
@@ -56,6 +56,15 @@ async function snapshot({ id, url }) {
     }
     const fav = html.match(/>\s*([\d,]+)\s+users? have favou?rite/i);
     if (fav) out.favourites = Number(fav[1].replace(/,/g, ""));
+
+    // Sale: the JSON-LD only carries the price you pay. The page state keys the list price
+    // by item id, and the page also lists other packages, so find this package's item first.
+    const item = html.match(new RegExp(`"id":"${id}","productId":"\\d+","itemId":"(\\d+)"`));
+    const sale = item && html.match(new RegExp(`"originalPrice":\\{"itemId":"${item[1]}","originalPrice":"([\\d.]+)","finalPrice":"([\\d.]+)"[^}]*?"percentage":([\\d.]+)`));
+    if (sale && Number(sale[1]) > Number(sale[2])) {
+      out.listPrice = num(sale[1]);
+      out.discount = Math.round(Number(sale[3]));
+    }
   } catch (err) {
     console.warn(`page ${id}: ${err.message}`);
   }

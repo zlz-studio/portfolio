@@ -1,17 +1,31 @@
 {
-  "fetchedAt": "2026-09-18T19:09:26.000Z",
+  "fetchedAt": "2026-09-21T15:40:11.087Z",
   "packages": {
     "anime": {
       "id": 354900,
       "url": "https://assetstore.unity.com/packages/vfx/shaders/zlz-anime-shader-354900",
       "version": "2.0.0",
       "price": 54.99,
+      "listPrice": null,
+      "discount": null,
       "currency": "USD",
       "rating": 5,
       "reviews": 8,
       "favourites": 155,
       "image": "https://assetstorev1-prd-cdn.unity3d.com/key-image/b3819d93-ffe7-49c6-91bf-b3d244799955.jpg"
     },
-    "env": null
+    "env": {
+      "id": 397684,
+      "url": "https://assetstore.unity.com/packages/vfx/shaders/zlz-env-shader-397684",
+      "version": "1.0.0",
+      "price": 27.49,
+      "listPrice": 54.99,
+      "discount": 50,
+      "currency": "USD",
+      "rating": null,
+      "reviews": null,
+      "favourites": null,
+      "image": "https://assetstorev1-prd-cdn.unity3d.com/key-image/213cfc10-79ac-430c-ab04-a514e162bff0.jpg"
+    }
   }
 }
