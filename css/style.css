@@ -467,8 +467,8 @@ main:focus { outline: none; }
   border-bottom: 1px solid var(--rule);
   margin-bottom: 14px;
 }
-.feat__grid { display: grid; gap: 12px; }
-@media (max-width: 600px) { .feat__grid { gap: 8px; } }
+/* wide gutters so each clip reads as its own frame; sized for desktop first, shrinks with the viewport */
+.feat__grid { display: grid; gap: clamp(28px, 2.6vw, 48px) clamp(20px, 2vw, 36px); }
 .feat__grid--sq { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 .feat__grid--wide { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 @media (max-width: 1100px) { .feat__grid--sq { grid-template-columns: repeat(4, minmax(0, 1fr)); } .feat__grid--wide { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
