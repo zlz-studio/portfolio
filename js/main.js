@@ -65,26 +65,43 @@
       ["LOD",               "/env/grass/Grass_LOD.webp",                "/env/grass/Grass_LOD_Hover.webp",          "/env/grass/grass-lod/"],
       ["Edges",             "/env/grass/Grass_Edges_Thumb.webp",        "/env/grass/Grass_Edges_Hover.webp",        "/env/grass/grass-edges/"],
     ],
+    // edited clips (assets/env/water, 960x540, no audio): no thumbnail, they loop while on screen
     water: [
-      ["Interaction",       "/env/water/Water_Interaction_Thumb.webp", "/env/water/Water_Interaction_Hover.webp", "/env/water/water-interaction/"],
-      ["Waves",             "/env/water/Water_Waves_Thumb.webp",       "/env/water/Water_Waves_Hover.webp",       "/env/water/water-waves/"],
-      ["Floater",           "/env/water/Water_Floater_Thumb.webp",     "/env/water/Water_Floater_Hover.webp",     "/env/water/water-floater/"],
-      ["Foam",              "/env/water/Water_Foam_Thumb.webp",        "/env/water/Water_Foam_Hover.webp",        "/env/water/water-foam/"],
-      ["Ring Wave",         "/env/water/Water_Ring_Wave_Thumb.webp",   "/env/water/Water_Ring_Wave_Hover.webp",   "/env/water/water-ring-wave/"],
-      ["Sparkle",           "/env/water/Water_Sparkle_Thumb.webp",     "/env/water/Water_Sparkle_Hover.webp",     "/env/water/water-sparkle/"],
-      ["Caustics",          "/env/water/Water_Caustics_Thumb.webp",    "/env/water/Water_Caustics_Hover.webp",    "/env/water/water-caustics/"],
-      ["Underwater",        "/env/water/Underwater_Thumb.webp",        "/env/water/Underwater_Hover.webp",        "/env/water/water-underwater/"],
+      ["Interaction",       null, "assets/env/water/Water_Trails.mp4",    "/env/water/water-interaction/"],
+      ["Waves",             null, "assets/env/water/Water_Waves.mp4",     "/env/water/water-waves/"],
+      ["Floater",           null, "assets/env/water/Water_Floater.mp4",   "/env/water/water-floater/"],
+      ["Foam",              null, "assets/env/water/Water_Foam.mp4",      "/env/water/water-foam/"],
+      ["Ring Wave",         null, "assets/env/water/Water_RingWave.mp4",  "/env/water/water-ring-wave/"],
+      ["Sparkle",           null, "assets/env/water/Water_Sparkle.mp4",   "/env/water/water-sparkle/"],
+      ["Caustics",          null, "assets/env/water/Water_Caustics.mp4",  "/env/water/water-caustics/"],
+      ["Underwater",        null, "assets/env/water/Underwater.mp4",      "/env/water/water-underwater/"],
     ],
   };
 
   const url = (p) => (p.startsWith("/") ? Z + p : p);
 
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // a clip plays only while its card is on screen; nothing downloads before that
+  const clipWatch = new IntersectionObserver((entries) => {
+    entries.forEach(({ target: v, isIntersecting }) => {
+      if (!isIntersecting) return v.pause();
+      if (!v.src) v.src = v.dataset.src;
+      if (!reduceMotion) v.play().catch(() => {});
+    });
+  }, { rootMargin: "150px 0px" });
+
   function renderCards(el, items) {
+    el.querySelectorAll("video").forEach((v) => clipWatch.unobserve(v));
     el.innerHTML = items.map(([title, thumb, anim, href], i) => `
       <a class="card" href="${Z + href}" target="_blank" rel="noopener">
-        <div class="card__img"><img src="${url(thumb)}" ${anim ? `data-anim="${url(anim)}"` : ""} alt="" loading="lazy" decoding="async"></div>
+        <div class="card__img">${thumb
+          ? `<img src="${url(thumb)}" ${anim ? `data-anim="${url(anim)}"` : ""} alt="" loading="lazy" decoding="async">`
+          : `<video data-src="${url(anim)}" muted loop playsinline preload="none"></video>`}</div>
         <div class="card__cap"><span>${title}</span><span>${String(i + 1).padStart(2, "0")}</span></div>
       </a>`).join("");
+
+    el.querySelectorAll("video").forEach((v) => clipWatch.observe(v));
 
     // animated webp swaps in on hover, only downloaded the first time
     el.querySelectorAll("img[data-anim]").forEach((img) => {
@@ -102,7 +119,13 @@
     const grid = document.getElementById(list.dataset.grid);
     const panel = grid.closest(".feat__panel");
     const tabs = [...list.querySelectorAll("button")];
-    renderCards(grid, groups[tabs[0].dataset.tab]);
+    const hint = list.closest(".feat__head").querySelector(":scope > span");
+    const show = (items) => {
+      renderCards(grid, items);
+      // clip tabs play on their own; the hint only makes sense for hover tabs
+      if (hint) hint.textContent = items.some((it) => !it[1]) ? "click for docs" : "hover to play";
+    };
+    show(groups[tabs[0].dataset.tab]);
 
     panel.id = tablistId + "Panel";
     tabs.forEach((btn, n) => {
@@ -141,7 +164,7 @@
       panel.setAttribute("aria-labelledby", btn.id);
       grid.classList.add("is-swapping");
       setTimeout(() => {
-        renderCards(grid, groups[btn.dataset.tab]);
+        show(groups[btn.dataset.tab]);
         grid.classList.remove("is-swapping");
       }, 220);
     }
