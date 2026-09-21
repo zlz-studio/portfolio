@@ -41,19 +41,19 @@
   };
 
   const ENV = {
+    // edited clips (assets/env/surface), same treatment as water below
     surface: [
-      ["Paint Mode",        "/env/shader/Surface_PaintMode_Brush_Thumb.webp",  "/env/shader/Surface_PaintMode_Brush_Hover.webp",  "/env/shader/paint-mode/"],
-      ["Triplanar",         "/env/shader/Surface_Triplanar_Thumb.webp",        "/env/shader/Surface_Triplanar_Hover.webp",        "/env/shader/triplanar/"],
-      ["Planar Reflection", "/env/shader/Surface_PlanarReflection_Thumb.webp", "/env/shader/Surface_PlanarReflection_Hover.webp", "/env/shader/planar-reflection/"],
-      ["Normal Map",        "/env/shader/Surface_NormalMap_Thumb.webp",        "/env/shader/Surface_NormalMap_Hover.webp",        "/env/shader/normal/"],
-      ["Specular / Metal",  "/env/shader/Surface_SpecularMetallic_Thumb.webp", "/env/shader/Surface_SpecularMetallic_Hover.webp", "/env/shader/specular/"],
-      ["Stochastic",        "/env/shader/Surface_Stochastic_Thumb.webp",       "/env/shader/Surface_Stochastic_Hover.webp",       "/env/shader/stochastic-tiling/"],
-      ["Accumulation",      "/env/shader/Surface_SnowAccumulation_Thumb.webp", "/env/shader/Surface_SnowAccumulation_Hover.webp", "/env/shader/snow-accumulation/"],
-      ["Wind",              "/env/shader/Surface_LeafWind_Thumb.webp",         "/env/shader/Surface_LeafWind_Hover.webp",         "/env/shader/leaf-wind/"],
-      ["Emission",          "/env/shader/Surface_Emissive_Thumb.webp",         "/env/shader/Surface_Emissive_Hover.webp",         "/env/shader/emissive/"],
-      ["Fog",               "/env/shader/Surface_Fog_Thumb.webp",              "/env/shader/Surface_Fog_Hover.webp",              "/env/shader/fog/"],
-      ["Target Darken",     "/env/fx/FX_TargetDarken_Thumb.webp",              "/env/fx/FX_TargetDarken_Hover.webp",              "/env/fx/target-darken/"],
-      ["Overview",          "/env/shader/Surface_Overview_Thumb.webp",         null,                                              "/env/shader/"],
+      ["Paint Mode",        null, "assets/env/surface/Surface_PaintMode.mp4",    "/env/shader/paint-mode/"],
+      ["Triplanar",         null, "assets/env/surface/Surface_Triplanar.mp4",    "/env/shader/triplanar/"],
+      ["Planar Reflection", null, "assets/env/surface/Surface_Reflection.mp4",   "/env/shader/planar-reflection/"],
+      ["Normal Map",        null, "assets/env/surface/Surface_Normal.mp4",       "/env/shader/normal/"],
+      ["Specular / Metal",  null, "assets/env/surface/Surface_Specular.mp4",     "/env/shader/specular/"],
+      ["Stochastic",        null, "assets/env/surface/Surface_Stochastic.mp4",   "/env/shader/stochastic-tiling/"],
+      ["Accumulation",      null, "assets/env/surface/Surface_Accumulation.mp4", "/env/shader/snow-accumulation/"],
+      ["Wind",              null, "assets/env/surface/Surface_Leaf.mp4",         "/env/shader/leaf-wind/"],
+      ["Emission",          null, "assets/env/surface/Surface_Emission.mp4",     "/env/shader/emissive/"],
+      ["Fog",               null, "assets/env/surface/Surface_Fog.mp4",          "/env/shader/fog/"],
+      ["Target Darken",     null, "assets/env/surface/Surface_Darken.mp4",       "/env/fx/target-darken/"],
     ],
     // edited clips (assets/env/grass), same treatment as water below
     grass: [
