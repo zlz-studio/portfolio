@@ -55,15 +55,16 @@
       ["Target Darken",     "/env/fx/FX_TargetDarken_Thumb.webp",              "/env/fx/FX_TargetDarken_Hover.webp",              "/env/fx/target-darken/"],
       ["Overview",          "/env/shader/Surface_Overview_Thumb.webp",         null,                                              "/env/shader/"],
     ],
+    // edited clips (assets/env/grass), same treatment as water below
     grass: [
-      ["Setup",             "/env/grass/Grass_Setup_Thumb.webp",        "/env/grass/Grass_Setup_Hover.webp",        "/env/grass/grass-setup/"],
-      ["Material",          "/env/grass/Grass_Material_Thumb.webp",     "/env/grass/Grass_Material_Hover.webp",     "/env/grass/grass-material/"],
-      ["Global Wind",       "/env/grass/Grass_Global_Wind_Thumb.webp",  "/env/grass/Grass_Global_Wind_Hover.webp",  "/env/grass/grass-global-wind/"],
-      ["Optimized",         "/env/grass/Grass_Optimized_Thumb.webp",    "/env/grass/Grass_Optimized_Hover.webp",    "/env/grass/grass-optimized/"],
-      ["Color Camera",      "/env/grass/Grass_Color_Camera_Thumb.webp", "/env/grass/Grass_Color_Camera_Hover.webp", "/env/grass/grass-color-camera/"],
-      ["Interaction",       "/env/grass/Grass_Interaction.webp",        "/env/grass/Grass_Interaction_Hover.webp",  "/env/grass/grass-interaction/"],
-      ["LOD",               "/env/grass/Grass_LOD.webp",                "/env/grass/Grass_LOD_Hover.webp",          "/env/grass/grass-lod/"],
-      ["Edges",             "/env/grass/Grass_Edges_Thumb.webp",        "/env/grass/Grass_Edges_Hover.webp",        "/env/grass/grass-edges/"],
+      ["Setup",             null, "assets/env/grass/Grass_Setup.mp4",       "/env/grass/grass-setup/"],
+      ["Material",          null, "assets/env/grass/Grass_Material.mp4",    "/env/grass/grass-material/"],
+      ["Global Wind",       null, "assets/env/grass/GlobalWind.mp4",        "/env/grass/grass-global-wind/"],
+      ["Optimized",         null, "assets/env/grass/Grass_Baker.mp4",       "/env/grass/grass-optimized/"],
+      ["Color Camera",      null, "assets/env/grass/Grass_Colors.mp4",      "/env/grass/grass-color-camera/"],
+      ["Interaction",       null, "assets/env/grass/Grass_Interaction.mp4", "/env/grass/grass-interaction/"],
+      ["LOD",               null, "assets/env/grass/Grass_LOD.mp4",         "/env/grass/grass-lod/"],
+      ["Edges",             null, "assets/env/grass/Grass_Collider.mp4",    "/env/grass/grass-edges/"],
     ],
     // edited clips (assets/env/water, 960x540, no audio): no thumbnail, they loop while on screen
     water: [
