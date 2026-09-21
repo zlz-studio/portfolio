@@ -468,7 +468,7 @@ main:focus { outline: none; }
   margin-bottom: 14px;
 }
 /* wide gutters so each clip reads as its own frame; sized for desktop first, shrinks with the viewport */
-.feat__grid { display: grid; gap: clamp(28px, 2.6vw, 48px) clamp(20px, 2vw, 36px); }
+.feat__grid { display: grid; gap: clamp(16px, 1.25vw, 24px) clamp(12px, 1.05vw, 20px); }
 .feat__grid--sq { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 .feat__grid--wide { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 @media (max-width: 1100px) { .feat__grid--sq { grid-template-columns: repeat(4, minmax(0, 1fr)); } .feat__grid--wide { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
