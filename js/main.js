@@ -4,42 +4,42 @@
   // [title, thumbnail, hover animation (optional), docs path]
   // Same thumbnails and hover clips as the feature cards on zlz-studio.github.io.
   const T = "/images/thumbs/";
-  // cards with a null thumbnail play an edited clip from assets/anime/clips instead
+  // cards with a null thumbnail play a clip from assets/anime/clips instead: edited clips, plus the
+  // docs site's hover animations converted to mp4 (Base Lighting, Specular and the FX Runtime set)
+  const C = "assets/anime/clips/";
   const ANIME = {
     hair: [
-      ["Hair System",       null, "assets/anime/clips/HairTransparent.mp4", "/features/hair-system/"],
-      ["Hair Highlight",    null, "assets/anime/clips/HairHighlight.mp4", "/features/Hair-Highlight/"],
-      ["Face Shadow",       null, "assets/anime/clips/FaceShadow.mp4", "/features/faceshadow/"],
-      ["Head Direction",    T + "head-direction.webp",    null, "/features/Head-Direction-System/"],
+      ["Hair System",       null, C + "HairTransparent.mp4", "/features/hair-system/"],
+      ["Hair Highlight",    null, C + "HairHighlight.mp4",   "/features/Hair-Highlight/"],
+      ["Face Shadow",       null, C + "FaceShadow.mp4",      "/features/faceshadow/"],
     ],
     lighting: [
-      ["Base Lighting",     T + "base-lighting.webp",     "/images/thumbs-anim/base-lighting.webp", "/features/Base-Character-Lighting/"],
-      ["ToonRamp Smooth",   null, "assets/anime/clips/ToonRampShade.mp4", "/features/ToonRampSmooth/"],
-      ["Shadow Edge",       T + "shadowedge.webp",        null, "/features/ShadowEdge/"],
-      ["Soft Light",        T + "soft-light.webp",        null, "/features/Soft-Light/"],
-      ["Rim Light",         null, "assets/anime/clips/Rimlight.mp4", "/features/RimLight/"],
-      ["Contact Shadow",    T + "contact-shadow.webp",    null, "/features/Contact-Shadow/"],
-      ["Tone Mapping",      null, "assets/anime/clips/ToneMapping.mp4", "/setup-character/Tone-Mapping/"],
+      ["Base Lighting",     null, C + "BaseLighting.mp4",    "/features/Base-Character-Lighting/"],
+      ["ToonRamp Smooth",   null, C + "ToonRampShade.mp4",   "/features/ToonRampSmooth/"],
+      ["Shadow Edge",       T + "shadowedge.webp",     null, "/features/ShadowEdge/"],
+      ["Soft Light",        T + "soft-light.webp",     null, "/features/Soft-Light/"],
+      ["Rim Light",         null, C + "Rimlight.mp4",        "/features/RimLight/"],
+      ["Contact Shadow",    T + "contact-shadow.webp", null, "/features/Contact-Shadow/"],
+      ["Tone Mapping",      null, C + "ToneMapping.mp4",     "/setup-character/Tone-Mapping/"],
     ],
     surface: [
-      ["Base Colors",       T + "base-colors.webp",       null, "/features/Base-Character-Colors/"],
-      ["Normal Map",        null, "assets/anime/clips/NormalMap.mp4", "/features/NormalMap/"],
-      ["Specular",          T + "specular.webp",          "/features/Specular/Specular2.webp", "/features/Specular/"],
-      ["Metallic",          null, "assets/anime/clips/Metallic.mp4", "/features/Metallic/"],
-      ["Emissive",          T + "emissive.webp",          null, "/features/Emissive/"],
-      ["Transparency",      T + "transparency.webp",      "/features/Transparency/Transparency.webp", "/features/Transparency/"],
-      ["Outline",           null, "assets/anime/clips/Outline.mp4", "/features/Outline/"],
-      ["Optimization",      null, "assets/anime/clips/Optimized.mp4", "/performance/"],
+      ["Base Colors",       T + "base-colors.webp",    null, "/features/Base-Character-Colors/"],
+      ["Normal Map",        null, C + "NormalMap.mp4",       "/features/NormalMap/"],
+      ["Specular",          null, C + "Specular.mp4",        "/features/Specular/"],
+      ["Metallic",          null, C + "Metallic.mp4",        "/features/Metallic/"],
+      ["Emissive",          T + "emissive.webp",       null, "/features/Emissive/"],
+      ["Outline",           null, C + "Outline.mp4",         "/features/Outline/"],
+      ["Optimization",      null, C + "Optimized.mp4",       "/performance/"],
     ],
     fx: [
-      ["Light Sweep",       T + "lightsweep.webp",        "/features/LightSweep/LightSweep.webp",            "/features/LightSweep/"],
-      ["Outline Select",    T + "outline-selection.webp", "/features/Outline-Selection/OutlineSelection.webp", "/features/Outline-Selection/"],
-      ["Dither",            T + "dither.webp",            "/features/Dither/Dither_Occlusion.webp",          "/features/Dither/"],
-      ["Dissolve",          T + "dissolve.webp",          "/features/Dissolve/Demo_Dissolve.webp",           "/features/Dissolve/"],
-      ["Get Hit",           T + "gethit.webp",            "/features/GetHit/Demo_GetHit.webp",               "/features/GetHit/"],
-      ["Target Darken",     T + "target-darken.webp",     "/features/Target-Darken/Demo_Target-Darken.webp", "/features/Target-Darken/"],
-      ["Upgrade",           T + "upgrade.webp",           "/features/Upgrade/Demo_Upgrade.webp",             "/features/Upgrade/"],
-      ["Indicator",         T + "indicator.webp",         "/features/Indicator/Demo_Indicator.webp",         "/features/Indicator/"],
+      ["Light Sweep",       null, C + "LightSweep.mp4",      "/features/LightSweep/"],
+      ["Outline Select",    null, C + "OutlineSelect.mp4",   "/features/Outline-Selection/"],
+      ["Dither",            null, C + "Dither.mp4",          "/features/Dither/"],
+      ["Dissolve",          null, C + "Dissolve.mp4",        "/features/Dissolve/"],
+      ["Get Hit",           null, C + "GetHit.mp4",          "/features/GetHit/"],
+      ["Target Darken",     null, C + "TargetDarken.mp4",    "/features/Target-Darken/"],
+      ["Upgrade",           null, C + "Upgrade.mp4",         "/features/Upgrade/"],
+      ["Indicator",         null, C + "Indicator.mp4",       "/features/Indicator/"],
     ],
   };
 
