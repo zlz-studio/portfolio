@@ -4,32 +4,32 @@
   // [title, thumbnail, hover animation (optional), docs path]
   // Same thumbnails and hover clips as the feature cards on zlz-studio.github.io.
   const T = "/images/thumbs/";
+  // cards with a null thumbnail play an edited clip from assets/anime/clips instead
   const ANIME = {
     hair: [
-      ["Hair System",       T + "hair-system.webp",       null, "/features/hair-system/"],
-      ["Hair Highlight",    T + "hair-highlight.webp",    null, "/features/Hair-Highlight/"],
-      ["Face Shadow",       T + "faceshadow.webp",        null, "/features/faceshadow/"],
+      ["Hair System",       null, "assets/anime/clips/HairTransparent.mp4", "/features/hair-system/"],
+      ["Hair Highlight",    null, "assets/anime/clips/HairHighlight.mp4", "/features/Hair-Highlight/"],
+      ["Face Shadow",       null, "assets/anime/clips/FaceShadow.mp4", "/features/faceshadow/"],
       ["Head Direction",    T + "head-direction.webp",    null, "/features/Head-Direction-System/"],
     ],
     lighting: [
       ["Base Lighting",     T + "base-lighting.webp",     "/images/thumbs-anim/base-lighting.webp", "/features/Base-Character-Lighting/"],
-      ["ToonRamp Smooth",   T + "toonramp.webp",          null, "/features/ToonRampSmooth/"],
+      ["ToonRamp Smooth",   null, "assets/anime/clips/ToonRampShade.mp4", "/features/ToonRampSmooth/"],
       ["Shadow Edge",       T + "shadowedge.webp",        null, "/features/ShadowEdge/"],
       ["Soft Light",        T + "soft-light.webp",        null, "/features/Soft-Light/"],
-      ["Rim Light",         T + "rimlight.webp",          null, "/features/RimLight/"],
+      ["Rim Light",         null, "assets/anime/clips/Rimlight.mp4", "/features/RimLight/"],
       ["Contact Shadow",    T + "contact-shadow.webp",    null, "/features/Contact-Shadow/"],
-      ["Tone Mapping",      "/setup-character/Tone-Mapping/Anime.webp", null, "/setup-character/Tone-Mapping/"],
+      ["Tone Mapping",      null, "assets/anime/clips/ToneMapping.mp4", "/setup-character/Tone-Mapping/"],
     ],
     surface: [
       ["Base Colors",       T + "base-colors.webp",       null, "/features/Base-Character-Colors/"],
-      ["Normal Map",        T + "normalmap.webp",         null, "/features/NormalMap/"],
+      ["Normal Map",        null, "assets/anime/clips/NormalMap.mp4", "/features/NormalMap/"],
       ["Specular",          T + "specular.webp",          "/features/Specular/Specular2.webp", "/features/Specular/"],
-      ["Metallic",          T + "metallic.webp",          "/features/Metallic/Showcase_Metallic_On.webp", "/features/Metallic/"],
+      ["Metallic",          null, "assets/anime/clips/Metallic.mp4", "/features/Metallic/"],
       ["Emissive",          T + "emissive.webp",          null, "/features/Emissive/"],
       ["Transparency",      T + "transparency.webp",      "/features/Transparency/Transparency.webp", "/features/Transparency/"],
-      ["Outline",           T + "outline.webp",           null, "/features/Outline/"],
-      // still cropped from the Performance docs page (ZLZ Shader Optimizer window)
-      ["Optimization",      "assets/anime/optimization.webp", null, "/performance/"],
+      ["Outline",           null, "assets/anime/clips/Outline.mp4", "/features/Outline/"],
+      ["Optimization",      null, "assets/anime/clips/Optimized.mp4", "/performance/"],
     ],
     fx: [
       ["Light Sweep",       T + "lightsweep.webp",        "/features/LightSweep/LightSweep.webp",            "/features/LightSweep/"],
