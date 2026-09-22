@@ -28,6 +28,8 @@
       ["Emissive",          T + "emissive.webp",          null, "/features/Emissive/"],
       ["Transparency",      T + "transparency.webp",      "/features/Transparency/Transparency.webp", "/features/Transparency/"],
       ["Outline",           T + "outline.webp",           null, "/features/Outline/"],
+      // still cropped from the Performance docs page (ZLZ Shader Optimizer window)
+      ["Optimization",      "assets/anime/optimization.webp", null, "/performance/"],
     ],
     fx: [
       ["Light Sweep",       T + "lightsweep.webp",        "/features/LightSweep/LightSweep.webp",            "/features/LightSweep/"],
@@ -124,8 +126,8 @@
     const hint = list.closest(".feat__head").querySelector(":scope > span");
     const show = (items) => {
       renderCards(grid, items);
-      // clip tabs play on their own; the hint only makes sense for hover tabs
-      if (hint) hint.textContent = items.some((it) => !it[1]) ? "click for docs" : "hover to play";
+      // the hint only makes sense for tabs with hover animations (clip tabs play on their own)
+      if (hint) hint.textContent = items.some((it) => it[1] && it[2]) ? "hover to play" : "click for docs";
     };
     show(groups[tabs[0].dataset.tab]);
 
