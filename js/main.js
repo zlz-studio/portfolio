@@ -8,10 +8,17 @@
   // docs site's hover animations converted to mp4 (Base Lighting, Specular and the FX Runtime set)
   const C = "assets/anime/clips/";
   const ANIME = {
-    hair: [
+    character: [
       ["Hair System",       null, C + "HairTransparent.mp4", "/features/hair-system/"],
       ["Hair Highlight",    null, C + "HairHighlight.mp4",   "/features/Hair-Highlight/"],
       ["Face Shadow",       null, C + "FaceShadow.mp4",      "/features/faceshadow/"],
+      ["Base Colors",       T + "base-colors.webp",    null, "/features/Base-Character-Colors/"],
+      ["Normal Map",        null, C + "NormalMap.mp4",       "/features/NormalMap/"],
+      ["Specular",          null, C + "Specular.mp4",        "/features/Specular/"],
+      ["Metallic",          null, C + "Metallic.mp4",        "/features/Metallic/"],
+      ["Emissive",          T + "emissive.webp",       null, "/features/Emissive/"],
+      ["Outline",           null, C + "Outline.mp4",         "/features/Outline/"],
+      ["Optimization",      null, C + "Optimized.mp4",       "/performance/"],
     ],
     lighting: [
       ["Base Lighting",     null, C + "BaseLighting.mp4",    "/features/Base-Character-Lighting/"],
@@ -21,15 +28,6 @@
       ["Rim Light",         null, C + "Rimlight.mp4",        "/features/RimLight/"],
       ["Contact Shadow",    null, C + "Contact_Shadow.mp4",  "/features/Contact-Shadow/"],
       ["Tone Mapping",      null, C + "ToneMapping.mp4",     "/setup-character/Tone-Mapping/"],
-    ],
-    surface: [
-      ["Base Colors",       T + "base-colors.webp",    null, "/features/Base-Character-Colors/"],
-      ["Normal Map",        null, C + "NormalMap.mp4",       "/features/NormalMap/"],
-      ["Specular",          null, C + "Specular.mp4",        "/features/Specular/"],
-      ["Metallic",          null, C + "Metallic.mp4",        "/features/Metallic/"],
-      ["Emissive",          T + "emissive.webp",       null, "/features/Emissive/"],
-      ["Outline",           null, C + "Outline.mp4",         "/features/Outline/"],
-      ["Optimization",      null, C + "Optimized.mp4",       "/performance/"],
     ],
     fx: [
       ["Light Sweep",       null, C + "LightSweep.mp4",      "/features/LightSweep/"],
