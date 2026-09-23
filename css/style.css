@@ -224,29 +224,11 @@ main:focus { outline: none; }
   gap: 18px;
 }
 
-/* 16:9 screen, gold viewfinder corners sitting just outside the picture */
+/* 16:9 screen */
 .showreel__screen {
   position: relative;
   aspect-ratio: 16 / 9;
   background: var(--ink-2);
-  box-shadow: 0 30px 80px -30px rgba(212, 169, 60, .28);
-}
-.showreel__screen::after {
-  --c: var(--gold);
-  --l: 22px;
-  content: "";
-  position: absolute; inset: -9px;
-  pointer-events: none;
-  background:
-    linear-gradient(var(--c), var(--c)) left top / var(--l) 2px,
-    linear-gradient(var(--c), var(--c)) left top / 2px var(--l),
-    linear-gradient(var(--c), var(--c)) right top / var(--l) 2px,
-    linear-gradient(var(--c), var(--c)) right top / 2px var(--l),
-    linear-gradient(var(--c), var(--c)) left bottom / var(--l) 2px,
-    linear-gradient(var(--c), var(--c)) left bottom / 2px var(--l),
-    linear-gradient(var(--c), var(--c)) right bottom / var(--l) 2px,
-    linear-gradient(var(--c), var(--c)) right bottom / 2px var(--l);
-  background-repeat: no-repeat;
 }
 .showreel__screen video {
   position: absolute; inset: 0;
