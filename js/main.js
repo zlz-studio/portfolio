@@ -216,38 +216,57 @@
   document.getElementById("year").textContent = new Date().getFullYear();
 })();
 
-// ---- hero cover: slow crossfade through work stills ----
+// ---- hero cover: play the work clips in order, crossfading on each end ----
 (function () {
   const cover = document.getElementById("cover");
   if (!cover) return;
-  const slides = [...cover.querySelectorAll("img")];
+  const slides = [...cover.querySelectorAll("video")];
   const cap = document.getElementById("coverCap");
   const idx = document.getElementById("coverIdx");
   const bar = document.getElementById("coverBar");
-  const DURATION = 5000;
   const pad = (n) => String(n).padStart(2, "0");
   let i = 0;
+  let visible = true;
 
-  cover.style.setProperty("--slide", DURATION / 1000 + "s");
+  // reduced motion: hold the first frame (the poster), no playback
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !slides.length) return;
 
-  function runBar() {
-    bar.classList.remove("is-run");
-    void bar.offsetWidth;
-    bar.classList.add("is-run");
+  // bar follows the clip's own clock, so it pauses when the video pauses
+  (function tick() {
+    const v = slides[i];
+    bar.style.transform = `scaleX(${v.duration ? v.currentTime / v.duration : 0})`;
+    requestAnimationFrame(tick);
+  })();
+
+  function play() {
+    if (!visible || document.hidden) return;
+    slides[i].play().catch(() => {});
   }
 
   function show(n) {
-    slides[i].classList.remove("is-on");
+    const prev = slides[i];
     i = (n + slides.length) % slides.length;
-    slides[i].classList.add("is-on");
-    cap.textContent = slides[i].dataset.cap;
+    const v = slides[i];
+    v.currentTime = 0;
+    v.classList.add("is-on");
+    prev.classList.remove("is-on");
+    cap.textContent = v.dataset.cap;
     idx.textContent = `${pad(i + 1)} / ${pad(slides.length)}`;
-    runBar();
+    play();
+    // warm up the next clip while this one plays
+    slides[(i + 1) % slides.length].preload = "auto";
   }
 
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || slides.length < 2) return;
-  runBar();
-  setInterval(() => show(i + 1), DURATION);
+  slides.forEach((v) => v.addEventListener("ended", () => show(i + 1)));
+  if (slides.length === 1) slides[0].loop = true;
+
+  new IntersectionObserver(([e]) => {
+    visible = e.isIntersecting;
+    visible ? play() : slides[i].pause();
+  }).observe(cover);
+  document.addEventListener("visibilitychange", () => (document.hidden ? slides[i].pause() : play()));
+
+  if (slides[1]) slides[1].preload = "auto";
 })();
 
 // ---- Asset Store cards ----
