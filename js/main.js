@@ -16,10 +16,10 @@
     lighting: [
       ["Base Lighting",     null, C + "BaseLighting.mp4",    "/features/Base-Character-Lighting/"],
       ["ToonRamp Smooth",   null, C + "ToonRampShade.mp4",   "/features/ToonRampSmooth/"],
-      ["Shadow Edge",       T + "shadowedge.webp",     null, "/features/ShadowEdge/"],
-      ["Soft Light",        T + "soft-light.webp",     null, "/features/Soft-Light/"],
+      ["Shadow Edge",       null, C + "ShadowEdge.mp4",      "/features/ShadowEdge/"],
+      ["Soft Light",        null, C + "SoftLight.mp4",       "/features/Soft-Light/"],
       ["Rim Light",         null, C + "Rimlight.mp4",        "/features/RimLight/"],
-      ["Contact Shadow",    T + "contact-shadow.webp", null, "/features/Contact-Shadow/"],
+      ["Contact Shadow",    null, C + "Contact_Shadow.mp4",  "/features/Contact-Shadow/"],
       ["Tone Mapping",      null, C + "ToneMapping.mp4",     "/setup-character/Tone-Mapping/"],
     ],
     surface: [
