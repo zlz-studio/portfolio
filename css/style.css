@@ -249,6 +249,27 @@ main:focus { outline: none; }
   .hero__cover-cap { right: 0; justify-content: space-between; }
 }
 
+/* clip picker: prev / 1-5 / next, top-right so it never meets the caption */
+.hero__cover-nav {
+  position: absolute; top: 0; right: 0;
+  display: flex;
+  background: var(--ink);
+}
+.hero__cover-nav button {
+  min-width: 34px; height: 34px;
+  padding: 0 6px;
+  border: 0;
+  background: none;
+  color: var(--mute);
+  font: inherit; font-size: 12px;
+  cursor: pointer;
+  transition: color .2s, background .2s;
+}
+.hero__cover-nav button[data-step] { color: var(--paper); font-size: 18px; line-height: 1; }
+.hero__cover-nav button[aria-current="true"] { color: var(--gold); }
+.hero__cover-nav button:hover { background: var(--gold); color: var(--ink); }
+.hero__cover-nav :focus-visible { outline-offset: -2px; }
+
 .hero__cover-bar {
   position: absolute; left: 0; bottom: 0;
   height: 2px; width: 100%;

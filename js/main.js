@@ -224,12 +224,13 @@
   const cap = document.getElementById("coverCap");
   const idx = document.getElementById("coverIdx");
   const bar = document.getElementById("coverBar");
+  const dots = [...cover.querySelectorAll("[data-go]")];
   const pad = (n) => String(n).padStart(2, "0");
+  // reduced motion: hold the poster until the visitor picks a clip themselves
+  let auto = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let i = 0;
   let visible = true;
-
-  // reduced motion: hold the first frame (the poster), no playback
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !slides.length) return;
+  if (!slides.length) return;
 
   // bar follows the clip's own clock, so it pauses when the video pauses
   (function tick() {
@@ -239,7 +240,7 @@
   })();
 
   function play() {
-    if (!visible || document.hidden) return;
+    if (!auto || !visible || document.hidden) return;
     slides[i].play().catch(() => {});
   }
 
@@ -247,18 +248,29 @@
     const prev = slides[i];
     i = (n + slides.length) % slides.length;
     const v = slides[i];
+    if (prev !== v) {
+      prev.pause();
+      v.classList.add("is-on");
+      prev.classList.remove("is-on");
+    }
+    v.preload = "auto";
     v.currentTime = 0;
-    v.classList.add("is-on");
-    prev.classList.remove("is-on");
     cap.textContent = v.dataset.cap;
     idx.textContent = `${pad(i + 1)} / ${pad(slides.length)}`;
+    dots.forEach((d, k) => d.setAttribute("aria-current", k === i));
     play();
     // warm up the next clip while this one plays
     slides[(i + 1) % slides.length].preload = "auto";
   }
 
   slides.forEach((v) => v.addEventListener("ended", () => show(i + 1)));
-  if (slides.length === 1) slides[0].loop = true;
+
+  cover.querySelector("#coverNav").addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    auto = true;
+    show(b.dataset.go != null ? +b.dataset.go : i + +b.dataset.step);
+  });
 
   new IntersectionObserver(([e]) => {
     visible = e.isIntersecting;
