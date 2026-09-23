@@ -216,26 +216,23 @@
   document.getElementById("year").textContent = new Date().getFullYear();
 })();
 
-// ---- hero cover: play the work clips in order, crossfading on each end ----
+// ---- hero showreel: clips play in order, wipe into the next, rail picks any ----
 (function () {
-  const cover = document.getElementById("cover");
-  if (!cover) return;
-  const slides = [...cover.querySelectorAll("video")];
-  const cap = document.getElementById("coverCap");
-  const idx = document.getElementById("coverIdx");
-  const bar = document.getElementById("coverBar");
-  const dots = [...cover.querySelectorAll("[data-go]")];
-  const pad = (n) => String(n).padStart(2, "0");
+  const reel = document.getElementById("cover");
+  if (!reel) return;
+  const slides = [...reel.querySelectorAll("video")];
+  const chapters = [...reel.querySelectorAll("[data-go]")];
+  const fills = chapters.map((c) => c.querySelector(".showreel__track i"));
   // reduced motion: hold the poster until the visitor picks a clip themselves
   let auto = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let i = 0;
   let visible = true;
   if (!slides.length) return;
 
-  // bar follows the clip's own clock, so it pauses when the video pauses
+  // the gold fill follows the clip's own clock, so it pauses when the video pauses
   (function tick() {
     const v = slides[i];
-    bar.style.transform = `scaleX(${v.duration ? v.currentTime / v.duration : 0})`;
+    fills[i].style.transform = `scaleX(${v.duration ? v.currentTime / v.duration : 0})`;
     requestAnimationFrame(tick);
   })();
 
@@ -248,16 +245,20 @@
     const prev = slides[i];
     i = (n + slides.length) % slides.length;
     const v = slides[i];
+    slides.forEach((s) => s.classList.remove("is-prev", "is-cut"));
     if (prev !== v) {
       prev.pause();
-      v.classList.add("is-on");
-      prev.classList.remove("is-on");
+      prev.classList.replace("is-on", "is-prev");
+      void v.offsetWidth; // restart the wipe
+      v.classList.add("is-on", "is-cut");
     }
     v.preload = "auto";
     v.currentTime = 0;
-    cap.textContent = v.dataset.cap;
-    idx.textContent = `${pad(i + 1)} / ${pad(slides.length)}`;
-    dots.forEach((d, k) => d.setAttribute("aria-current", k === i));
+    chapters.forEach((c, k) => {
+      c.setAttribute("aria-current", k === i);
+      c.parentNode.classList.toggle("is-done", k < i);
+      if (k !== i) fills[k].style.transform = "";
+    });
     play();
     // warm up the next clip while this one plays
     slides[(i + 1) % slides.length].preload = "auto";
@@ -265,7 +266,7 @@
 
   slides.forEach((v) => v.addEventListener("ended", () => show(i + 1)));
 
-  cover.querySelector("#coverNav").addEventListener("click", (e) => {
+  reel.addEventListener("click", (e) => {
     const b = e.target.closest("button");
     if (!b) return;
     auto = true;
@@ -275,7 +276,7 @@
   new IntersectionObserver(([e]) => {
     visible = e.isIntersecting;
     visible ? play() : slides[i].pause();
-  }).observe(cover);
+  }).observe(reel);
   document.addEventListener("visibilitychange", () => (document.hidden ? slides[i].pause() : play()));
 
   if (slides[1]) slides[1].preload = "auto";

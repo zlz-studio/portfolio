@@ -215,68 +215,143 @@ main:focus { outline: none; }
   max-width: 46ch;
 }
 
-/* right column: a true 16:9 frame so stills and video show uncropped */
-.hero__cover {
+/* ---------- showreel: the one moving thing in the hero ---------- */
+.showreel {
   margin: 0;
   align-self: end;
+  min-width: 0;
+  display: grid;
+  gap: 18px;
+}
+
+/* 16:9 screen, gold viewfinder corners sitting just outside the picture */
+.showreel__screen {
   position: relative;
   aspect-ratio: 16 / 9;
-  max-width: 100%;
-  overflow: hidden;
   background: var(--ink-2);
+  box-shadow: 0 30px 80px -30px rgba(212, 169, 60, .28);
 }
-.hero__cover img, .hero__cover video {
+.showreel__screen::after {
+  --c: var(--gold);
+  --l: 22px;
+  content: "";
+  position: absolute; inset: -9px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--c), var(--c)) left top / var(--l) 2px,
+    linear-gradient(var(--c), var(--c)) left top / 2px var(--l),
+    linear-gradient(var(--c), var(--c)) right top / var(--l) 2px,
+    linear-gradient(var(--c), var(--c)) right top / 2px var(--l),
+    linear-gradient(var(--c), var(--c)) left bottom / var(--l) 2px,
+    linear-gradient(var(--c), var(--c)) left bottom / 2px var(--l),
+    linear-gradient(var(--c), var(--c)) right bottom / var(--l) 2px,
+    linear-gradient(var(--c), var(--c)) right bottom / 2px var(--l);
+  background-repeat: no-repeat;
+}
+.showreel__screen video {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  opacity: 0;
-  transition: opacity 1.2s var(--ease);
+  visibility: hidden;
 }
-.hero__cover .is-on { opacity: 1; }
+/* incoming clip wipes in over the outgoing one */
+.showreel__screen .is-prev { visibility: visible; z-index: 1; }
+.showreel__screen .is-on { visibility: visible; z-index: 2; }
+.showreel__screen .is-on.is-cut { animation: showreel-wipe 1s var(--ease) both; }
+@keyframes showreel-wipe {
+  from { clip-path: inset(0 100% 0 0); transform: scale(1.06); }
+  to   { clip-path: inset(0 0 0 0);    transform: scale(1); }
+}
 
-.hero__cover-cap {
-  position: absolute; left: 0; bottom: 0;
-  display: flex; gap: 24px;
-  padding: 9px 14px;
+.showreel__tag {
+  position: absolute; left: 0; top: 0; z-index: 3;
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 12px;
   background: var(--ink);
   color: var(--paper);
 }
-.hero__cover-cap span:last-child { color: var(--mute); }
-
-/* narrow frames: the tab nearly fills the width, and a part-width one leaves a
-   sliver of artwork on the right that reads as a glitch. Span the frame instead. */
-@media (max-width: 460px) {
-  .hero__cover-cap { right: 0; justify-content: space-between; }
+.showreel__tag i {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--gold);
+  animation: showreel-live 1.6s ease-in-out infinite;
 }
+@keyframes showreel-live { 50% { opacity: .25; } }
 
-/* clip picker: prev / 1-5 / next, top-right so it never meets the caption */
-.hero__cover-nav {
-  position: absolute; top: 0; right: 0;
+/* chapter rail: every clip visible, the playing one fills in gold */
+.showreel__rail {
   display: flex;
-  background: var(--ink);
+  align-items: flex-start;
+  gap: clamp(14px, 2vw, 28px);
 }
-.hero__cover-nav button {
-  min-width: 34px; height: 34px;
-  padding: 0 6px;
-  border: 0;
-  background: none;
+.showreel__chapters {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0; padding: 0;
+  list-style: none;
+}
+.showreel__chapters button {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 10px;
+  row-gap: 3px;
+  width: 100%;
+  padding: 0 0 4px;
+  border: 0; background: none;
   color: var(--mute);
-  font: inherit; font-size: 12px;
+  font: inherit; text-align: left;
   cursor: pointer;
-  transition: color .2s, background .2s;
+  transition: color .25s;
 }
-.hero__cover-nav button[data-step] { color: var(--paper); font-size: 18px; line-height: 1; }
-.hero__cover-nav button[aria-current="true"] { color: var(--gold); }
-.hero__cover-nav button:hover { background: var(--gold); color: var(--ink); }
-.hero__cover-nav :focus-visible { outline-offset: -2px; }
-
-.hero__cover-bar {
-  position: absolute; left: 0; bottom: 0;
-  height: 2px; width: 100%;
+.showreel__track {
+  grid-column: 1 / -1;
+  height: 2px;
+  margin-bottom: 9px;
+  background: var(--rule-strong);
+  overflow: hidden;
+}
+.showreel__track i {
+  display: block; height: 100%;
   background: var(--gold);
   transform: scaleX(0); transform-origin: left;
 }
-.hero__cover-bar.is-run { transform: scaleX(1); transition: transform var(--slide, 5s) linear; }
+.showreel__chapters .is-done .showreel__track i { transform: scaleX(1); background: var(--mute-2); }
+.showreel__num { grid-row: 2 / 4; font-size: 11px; line-height: 1.7; }
+.showreel__title {
+  font-weight: 600;
+  font-size: clamp(13px, .95vw, 15px);
+  letter-spacing: -.01em;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.showreel__kind { font-size: 10px; color: var(--mute-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.showreel__chapters button:hover,
+.showreel__chapters [aria-current="true"] { color: var(--paper); }
+.showreel__chapters [aria-current="true"] .showreel__num { color: var(--gold); }
+
+.showreel__step { display: flex; gap: 6px; padding-top: 1px; }
+.showreel__step button {
+  width: 40px; height: 40px;
+  border: 1px solid var(--rule-strong);
+  background: none;
+  color: var(--paper);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.showreel__step button:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+
+@media (max-width: 640px) {
+  .showreel__kind { display: none; }
+  .showreel__title { font-size: 12px; }
+  .showreel__chapters { gap: 6px; }
+  .showreel__num { display: none; }
+  .showreel__step button { width: 34px; height: 34px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .showreel__screen .is-on.is-cut, .showreel__tag i { animation: none; }
+}
 
 /* white band: hard cut from black */
 .hero__band {
@@ -308,7 +383,7 @@ main:focus { outline: none; }
 @media (max-width: 1000px) {
   .hero__main { grid-template-rows: none; }
   .hero__stage { grid-template-columns: 1fr; gap: 28px; }
-  .hero__cover { order: -1; }
+  .showreel { order: -1; }
   .hero__intro { height: auto; }
   .hero__photo { flex: none; width: min(52%, 240px); max-height: none; }
 }
