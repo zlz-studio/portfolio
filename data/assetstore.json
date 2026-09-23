@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-21T15:40:11.087Z",
+  "fetchedAt": "2026-09-23T08:32:04.164Z",
   "packages": {
     "anime": {
       "id": 354900,
@@ -10,7 +10,7 @@
       "discount": null,
       "currency": "USD",
       "rating": 5,
-      "reviews": 8,
+      "reviews": 9,
       "favourites": 155,
       "image": "https://assetstorev1-prd-cdn.unity3d.com/key-image/b3819d93-ffe7-49c6-91bf-b3d244799955.jpg"
     },
