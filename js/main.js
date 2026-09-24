@@ -381,7 +381,8 @@
 
 // ---- clip reels: each card plays its clips once each, in order, then starts over.
 // The counter shows which clip is playing; the bar shows how long until the next one.
-// Only plays while the card is on screen.
+// Only plays while the card is on screen. Each clip has its own <video>: the next one
+// loads while the current one plays, and the cut waits until it can play (no black frame).
 (function () {
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const pad = (n) => String(n).padStart(2, "0");
@@ -389,44 +390,62 @@
   document.querySelectorAll(".reel[data-clips]").forEach((reel) => {
     const clips = reel.dataset.clips.split(",").map((s) => s.trim());
     reel.innerHTML = `
-      <video muted playsinline preload="none"></video>
+      ${clips.map(() => `<video muted playsinline preload="none"></video>`).join("")}
       <div class="reel__hud mono"><span class="reel__count">${pad(1)} / ${pad(clips.length)}</span></div>
       <span class="reel__bar"><i></i></span>`;
-    const video = reel.querySelector("video");
+    const videos = [...reel.querySelectorAll("video")];
     const count = reel.querySelector(".reel__count");
     const fill = reel.querySelector(".reel__bar i");
-    let i = 0, visible = false, raf = 0;
+    let i = 0, visible = false, raf = 0, started = false;
 
-    function load(n) {
-      i = (n + clips.length) % clips.length;
+    const warm = (v, n) => { if (!v.src) { v.src = clips[n]; v.preload = "auto"; } };
+
+    function ready(v) {
+      if (v.readyState >= 3) return Promise.resolve();
+      return new Promise((res) => {
+        v.addEventListener("canplay", res, { once: true });
+        v.addEventListener("error", res, { once: true });
+      });
+    }
+
+    function play() {
+      if (visible && !reduce) videos[i].play().catch(() => {});
+    }
+
+    async function load(n) {
+      const to = (n + clips.length) % clips.length;
+      const v = videos[to];
+      warm(v, to);
+      v.currentTime = 0;
+      await ready(v); // the last frame of the current clip holds until then
+      videos[i].classList.remove("is-on");
+      v.classList.add("is-on");
+      i = to;
       count.textContent = `${pad(i + 1)} / ${pad(clips.length)}`;
-      video.src = clips[i];
-      video.play().catch(() => {});
+      play();
+      const next = (i + 1) % clips.length;
+      warm(videos[next], next);
     }
 
     // one pass per clip, then the next; after the last clip it wraps to the first
-    video.addEventListener("ended", () => {
-      if (clips.length > 1) load(i + 1);
-      else { video.currentTime = 0; video.play().catch(() => {}); }
-    });
+    videos.forEach((v) => v.addEventListener("ended", () => load(i + 1)));
 
     function tick() {
-      fill.style.transform = `scaleX(${Math.min(1, video.currentTime / (video.duration || 1))})`;
+      const v = videos[i];
+      fill.style.transform = `scaleX(${Math.min(1, v.currentTime / (v.duration || 1))})`;
       raf = visible ? requestAnimationFrame(tick) : 0;
     }
 
     new IntersectionObserver(([e]) => {
       visible = e.isIntersecting;
       if (visible) {
-        if (!video.src) load(0);
-        else if (!reduce) video.play().catch(() => {});
+        if (!started) { started = true; load(0); }
+        else play();
         if (!raf) raf = requestAnimationFrame(tick);
       } else {
-        video.pause();
+        videos[i].pause();
       }
     }, { rootMargin: "150px 0px" }).observe(reel);
-
-    if (reduce) video.addEventListener("playing", () => video.pause(), { once: true });
   });
 })();
 
