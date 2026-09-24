@@ -226,25 +226,51 @@
   // reduced motion: hold the poster until the visitor picks a clip themselves
   let auto = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let i = 0;
+  let want = 0; // the clip asked for last; a slow load never overrides a newer click
   let visible = true;
+  let raf = 0;
   if (!slides.length) return;
+  if (!auto) { slides[0].removeAttribute("autoplay"); slides[0].pause(); }
 
-  // the gold fill follows the clip's own clock, so it pauses when the video pauses
-  (function tick() {
+  // the gold fill follows the clip's own clock; it only runs while a clip is playing
+  function tick() {
     const v = slides[i];
     fills[i].style.transform = `scaleX(${v.duration ? v.currentTime / v.duration : 0})`;
-    requestAnimationFrame(tick);
-  })();
+    raf = v.paused ? 0 : requestAnimationFrame(tick);
+  }
 
   function play() {
     if (!auto || !visible || document.hidden) return;
-    slides[i].play().catch(() => {});
+    slides[i].play().catch(() => {
+      // iOS Low Power Mode refuses autoplay: try again on the visitor's first touch or scroll
+      const retry = () => { off(); play(); };
+      const off = () => ["pointerdown", "touchstart", "scroll", "keydown"].forEach((t) => removeEventListener(t, retry));
+      ["pointerdown", "touchstart", "scroll", "keydown"].forEach((t) => addEventListener(t, retry, { once: true, passive: true }));
+    });
   }
 
-  function show(n) {
+  // wait until the clip can actually play, so the wipe never reveals a black frame
+  function ready(v) {
+    if (v.readyState >= 3) return Promise.resolve();
+    v.preload = "auto";
+    return new Promise((res) => {
+      v.addEventListener("canplay", res, { once: true });
+      v.addEventListener("error", res, { once: true });
+      if (v.readyState === 0) v.load();
+    });
+  }
+
+  async function show(n) {
+    const to = (n + slides.length) % slides.length;
+    want = to;
+    chapters.forEach((c, k) => c.setAttribute("aria-current", k === to));
+    const v = slides[to];
+    v.currentTime = 0;
+    await ready(v);
+    if (want !== to) return;
+
     const prev = slides[i];
-    i = (n + slides.length) % slides.length;
-    const v = slides[i];
+    i = to;
     slides.forEach((s) => s.classList.remove("is-prev", "is-cut"));
     if (prev !== v) {
       prev.pause();
@@ -252,10 +278,7 @@
       void v.offsetWidth; // restart the wipe
       v.classList.add("is-on", "is-cut");
     }
-    v.preload = "auto";
-    v.currentTime = 0;
     chapters.forEach((c, k) => {
-      c.setAttribute("aria-current", k === i);
       c.parentNode.classList.toggle("is-done", k < i);
       if (k !== i) fills[k].style.transform = "";
     });
@@ -264,13 +287,18 @@
     slides[(i + 1) % slides.length].preload = "auto";
   }
 
-  slides.forEach((v) => v.addEventListener("ended", () => show(i + 1)));
+  slides.forEach((v, k) => {
+    v.addEventListener("ended", () => show(k + 1));
+    v.addEventListener("playing", () => { if (k === i && !raf) raf = requestAnimationFrame(tick); });
+  });
+  // clip 2 starts loading once clip 1 is on screen, not alongside it
+  slides[0].addEventListener("playing", () => { if (slides[1]) slides[1].preload = "auto"; }, { once: true });
 
   reel.addEventListener("click", (e) => {
     const b = e.target.closest("button");
     if (!b) return;
     auto = true;
-    show(b.dataset.go != null ? +b.dataset.go : i + +b.dataset.step);
+    show(b.dataset.go != null ? +b.dataset.go : want + +b.dataset.step);
   });
 
   new IntersectionObserver(([e]) => {
@@ -278,8 +306,6 @@
     visible ? play() : slides[i].pause();
   }).observe(reel);
   document.addEventListener("visibilitychange", () => (document.hidden ? slides[i].pause() : play()));
-
-  if (slides[1]) slides[1].preload = "auto";
 })();
 
 // ---- Asset Store cards ----
