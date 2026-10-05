@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-02T09:42:44.117Z",
+  "fetchedAt": "2026-10-05T10:21:51.268Z",
   "packages": {
     "anime": {
       "id": 354900,
@@ -11,13 +11,13 @@
       "currency": "USD",
       "rating": 5,
       "reviews": 10,
-      "favourites": 155,
+      "favourites": 177,
       "image": "https://assetstorev1-prd-cdn.unity3d.com/key-image/b3819d93-ffe7-49c6-91bf-b3d244799955.jpg"
     },
     "env": {
       "id": 397684,
       "url": "https://assetstore.unity.com/packages/vfx/shaders/zlz-env-shader-397684",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "price": 27.49,
       "listPrice": 54.99,
       "discount": 50,
