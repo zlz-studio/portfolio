@@ -23,6 +23,7 @@
     lighting: [
       ["Base Lighting",     null, C + "BaseLighting.mp4",    "/features/Base-Character-Lighting/"],
       ["ToonRamp Smooth",   null, C + "ToonRampShade.mp4",   "/features/ToonRampSmooth/"],
+      ["Halftone",          null, C + "Halftone.mp4",        "/features/Halftone/"],
       ["Shadow Edge",       null, C + "ShadowEdge.mp4",      "/features/ShadowEdge/"],
       ["Soft Light",        null, C + "SoftLight.mp4",       "/features/Soft-Light/"],
       ["Rim Light",         null, C + "Rimlight.mp4",        "/features/RimLight/"],
@@ -49,6 +50,7 @@
       ["Planar Reflection", null, "assets/env/surface/Surface_Reflection.mp4",   "/env/shader/planar-reflection/"],
       ["Normal Map",        null, "assets/env/surface/Surface_Normal.mp4",       "/env/shader/normal/"],
       ["Specular / Metal",  null, "assets/env/surface/Surface_Specular.mp4",     "/env/shader/specular/"],
+      ["Halftone",          null, "assets/env/surface/Surface_Halftone.mp4",     "/env/shader/halftone/"],
       ["Stochastic",        null, "assets/env/surface/Surface_Stochastic.mp4",   "/env/shader/stochastic-tiling/"],
       ["Accumulation",      null, "assets/env/surface/Surface_Accumulation.mp4", "/env/shader/snow-accumulation/"],
       ["Wind",              null, "assets/env/surface/Surface_Leaf.mp4",         "/env/shader/leaf-wind/"],
